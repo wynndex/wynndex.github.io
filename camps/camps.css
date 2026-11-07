@@ -1,0 +1,297 @@
+/* Camps page only; shared item-card styles are in shared/style.css. */
+
+/* A pile of small, overlapping item icons in place of one big texture (camps page). */
+.item-art.pool-icons {
+  flex-wrap: wrap;
+  align-content: center;
+  width: 120px;
+  height: auto;
+  min-height: 70px;
+  flex-grow: 1; /* fill the card's spare height, so the name sits on the input */
+  padding: 10px 6px 14px;
+  box-sizing: border-box;
+  background: none; /* each icon glows on its own instead */
+}
+
+.pool-icon {
+  position: relative;
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: -4px -3px; /* overlap neighbours in both directions */
+
+  &:hover {
+    z-index: 2; /* bring a covered icon (and its tooltip) to the front */
+  }
+}
+
+.pool-icon-art {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.1s;
+
+  .pool-icon:hover & {
+    transform: scale(1.5);
+  }
+}
+
+/* Shiny glint (7x11 texture at 2x) in the icon's top-left corner. */
+.pool-icon-glint {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 14px;
+  height: 22px;
+  image-rendering: pixelated;
+}
+
+.pool-icon-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  background: radial-gradient(circle, rgb(var(--glow) / 0.2) 0%, rgb(var(--glow) / 0.06) 45%, transparent 70%);
+  filter: drop-shadow(0 0 4px rgb(var(--glow) / 0.35));
+
+  /* No texture: a faint square instead of a broken image. */
+  .pool-icon.missing & {
+    background: #ffffff1a;
+    filter: none;
+  }
+}
+
+/* Tooltip above a hovered pool icon: name, then count when it repeats. */
+.pool-tip {
+  position: absolute;
+  bottom: calc(100% + 14px); /* clear the enlarged icon */
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 2px 8px 6px;
+  white-space: nowrap;
+
+  background-color: #1b1b1bee;
+  border: 2px solid rgb(var(--glow) / 0.6);
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgb(var(--glow) / 0.3);
+
+  font-size: 22px;
+  line-height: 0.8;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.1s, visibility 0.1s;
+
+  /* Little arrow pointing down at the icon. */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: rgb(var(--glow) / 0.6);
+  }
+
+  .pool-icon:hover & {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.pool-tip,
+.pool-tip * {
+  text-shadow: 2px 2px 0 var(--shadow-dark); /* beats the light `*` shadow */
+}
+
+.pool-tip-name.mythic,
+.pool-tip-name.augment {
+  color: rgb(var(--purple));
+}
+
+.pool-tip-title {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.pool-tip-count {
+  color: #999999ff;
+}
+
+/* Price under the name; coloured by camps.js on the reroll page's blue scale. */
+.pool-tip-price {
+  color: hsl(205, 10%, 74%);
+
+  /* Shinies show their tracker instead, at the top of that scale. */
+  &.tracker {
+    color: hsl(205, 100%, 76%);
+  }
+}
+
+/* Flip cards (camps page): the front is a normal item card, the back a list.
+   The back is absolutely positioned, so the front decides the size. */
+.flip-card {
+  position: relative;
+  display: flex;
+  perspective: 800px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus-within {
+    z-index: 1; /* keep the front's hover tooltips above neighbouring cards */
+  }
+
+  &:focus-visible .flip-inner {
+    box-shadow: inset 0 0 0 2px #ffffff66;
+  }
+}
+
+.flip-inner {
+  position: relative;
+  display: flex;
+  flex: 1;
+  transform-style: preserve-3d;
+  transition: transform 0.4s;
+
+  /* The card's box lives here, so it stays visible (and turns) while only
+     the faces' contents fade. Inset shadow = border without taking space. */
+  background-color: var(--background-translucent);
+  box-shadow: inset 0 0 0 2px var(--background-translucent-light);
+
+  .flip-card.flipped & {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Cross-fade the faces over the 0.4s turn: the outgoing face fades out
+   quickly, both stay hidden around the edge-on middle, then the incoming one
+   fades in quickly at the end. Opacity rather
+   than backface-visibility, which browsers don't apply reliably to children
+   with their own effects (glows, enlarged icons, tooltips). Each rule's
+   transition is the one used when arriving at that state. */
+.flip-front,
+.flip-card.flipped .flip-back {
+  opacity: 1;
+  transition: opacity 0.12s ease-out 0.28s;
+}
+
+.flip-back,
+.flip-card.flipped .flip-front {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease-in;
+}
+
+.flip-card.flipped .flip-back {
+  pointer-events: auto;
+}
+
+.flip-front,
+.flip-back {
+  background: none;
+  border-color: transparent;
+}
+
+.flip-front {
+  flex: 1;
+}
+
+.flip-back {
+  position: absolute;
+  inset: 0;
+  width: auto !important;
+  padding: 6px 4px 6px 6px;
+  transform: rotateY(180deg);
+}
+
+/* The list on a card's back: icon | name | price (right-aligned). */
+.pool-list {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff40 transparent;
+}
+
+.pool-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 2px 2px 0;
+
+  font-size: 18px;
+  line-height: 0.9;
+
+  & + & {
+    border-top: 1px solid var(--background-translucent-light);
+  }
+}
+
+.pool-row-icon {
+  position: relative;
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+.pool-row-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+
+  &.missing {
+    background: #ffffff1a;
+  }
+}
+
+.pool-row-glint {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 7px;
+  height: 11px;
+  image-rendering: pixelated;
+}
+
+.pool-row-name {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+
+  &.mythic,
+  &.augment {
+    color: rgb(var(--purple));
+  }
+}
+
+.pool-row-count {
+  color: #999999ff;
+}
+
+.pool-row-value {
+  flex: none;
+  max-width: 55%;
+  text-align: right;
+  color: hsl(205, 10%, 74%);
+
+  &.tracker {
+    color: hsl(205, 100%, 76%);
+  }
+}
+
+.pool-row-name,
+.pool-row-count,
+.pool-row-value {
+  text-shadow: 2px 2px 0 var(--shadow-dark);
+}
