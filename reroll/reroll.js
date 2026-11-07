@@ -522,11 +522,16 @@
       var close = Math.abs(keepValue - current) <= TOSS_UP * Math.max(current, keepValue);
       var kind = close ? 'tossup' : reroll ? 'reroll' : 'take';
       setVerdict(kind, close ? 'Toss-up' : reroll ? 'Reroll' : 'Take it',
-        (reroll
+        (reroll && current === 0
+          ? '\u{1F6A8} It says you have nothing selected!! Make sure to input your rewards!'
+          : reroll
           ? 'Rerolling is worth ' + fmtEm(keepValue - current) + ' more on average' +
-            (close ? ', but it might be worth playing it safe.' : '.')
+            (close ? ', but this depends on your raw LE offers.' : '.')
           : 'Taking it is worth ' + fmtEm(current - keepValue) + ' more than rerolling' +
-            (close ? ', but you should also consider that gambling is fun.' : '.')));
+            (close ? ', but this depends on your raw LE offers.' : '.')));
+      // Always offered while rerolls remain, whatever the verdict, so it
+      // doesn't vanish as the current offer is being typed in.
+      out.appendChild(rerollButton(rerolls));
     }
 
     var lines = [
@@ -553,6 +558,26 @@
   }
 
   var computeTimer = null;
+  // Shown under the "Reroll" verdict: spends one reroll and clears the current
+  // offer (item counts and liquid emeralds) so the next one can be entered.
+  function rerollButton(rerolls) {
+    var btn = el('button', {
+      type: 'button',
+      className: 'reroll-button',
+      text: 'Click me to reroll; ' + rerolls + ' roll' + (rerolls === 1 ? '' : 's') + ' left.',
+    });
+    btn.addEventListener('click', function () {
+      state.rerolls = String(Math.max(0, rerolls - 1));
+      $('rerolls').value = state.rerolls;
+      state.rows.forEach(function (r) { r.count = 0; });
+      var em = $('em-current');
+      if (em) { state.emCur = ''; em.value = ''; markInvalid(em, null); }
+      renderPool();
+      changed();
+    });
+    return btn;
+  }
+
   function changed() {
     persist();
     clearTimeout(computeTimer);

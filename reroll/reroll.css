@@ -58,3 +58,14 @@
     text-shadow: 3px 3px 0px #00000059; /* softer than --shadow-dark */
   }
 }
+
+/* "Click me to reroll" button under the Reroll verdict */
+.reroll-button {
+  display: block;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.reroll-button:hover {
+  border-color: #ffffff66;
+}
