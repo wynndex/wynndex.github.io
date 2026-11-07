@@ -524,9 +524,9 @@
       setVerdict(kind, close ? 'Toss-up' : reroll ? 'Reroll' : 'Take it',
         (reroll
           ? 'Rerolling is worth ' + fmtEm(keepValue - current) + ' more on average' +
-            (close ? ', but it might be worth playing it safe.' : '.')
+            (close ? ', but this depends on your raw LE offers.' : '.')
           : 'Taking it is worth ' + fmtEm(current - keepValue) + ' more than rerolling' +
-            (close ? ', but you should also consider that gambling is fun.' : '.')));
+            (close ? ', but this depends on your raw LE offers.' : '.')));
     }
 
     var lines = [
