@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../shared/style.css">
+    <link rel="stylesheet" href="camps.css">
+    <script src="/shared/sidebar.js"></script>
+    <script src="/shared/stepper.js"></script>
+    <script src="camps.js" defer></script>
+    <title>Camps - Wynndex</title>
+</head>
+<body>
+    <div class="site">
+        <div class="header">Introduction</div>
+        <div class="content full-width">
+            Each camp is scored by the average value of its rare rewards (mythics, augments and wards) per pull, divided by how many
+            minutes you expect each challenge to take there; higher scores are better. Enter your personal minutes per challenge on
+            each card if you disagree with my defaults.
+        </div>
+
+        <div class="header">Ranking</div>
+        <div class="content full-width">
+            <div id="ranking" class="item-grid"><dull>Loading camps...</dull></div>
+            <dull id="ranking-notes" class="price-credit"></dull>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,436 @@
+@font-face {
+  font-family: 'WynnWynncraft';
+  src: url('wynn-wynncraft.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background-color: #222222;
+  --background-translucent: #97a2a322;
+  --background-translucent-light: #bac6c722;
+  --background-translucent-lighter: #bac6c733;
+  --shadow-color: #ffffff40;
+  --shadow-dark: #000000aa; /* item price / slot badges */
+
+  --text-yellow: #e2f088ff;
+
+  /* Site purple (#9c1fa5) as r g b, for rgb(var(--purple) / alpha). */
+  --purple: 156 31 165;
+
+  --site-padding: 16px;
+}
+
+* {
+  font-family: 'WynnWynncraft';
+  color: white;
+  text-shadow: 3px 3px 0px var(--shadow-color);
+  line-height: 0.8;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-color);
+}
+
+.site {
+  display: flex;
+  flex-direction: column;
+
+  min-height: calc(100vh - var(--site-padding) * 2);
+  padding: var(--site-padding);
+
+  background-color: var(--background-color);
+}
+
+.header {
+  background-color: var(--background-translucent);
+  padding-left: 16px;
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+  border: 2px solid #ffffff66;
+  border-radius: 4px;
+
+  font-size: 50px;
+}
+
+/* Collapsible headers (shared/collapse.js): click a header to hide its section. */
+.header.collapsible {
+  cursor: pointer;
+  user-select: none;
+}
+
+.header.collapsible::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 21px;
+  margin-right: 14px;
+  vertical-align: 4px;
+
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 7' shape-rendering='crispEdges' fill='%23fff'%3E%3Cpath d='M0 0h1v7H0zM1 1h1v5H1zM2 2h1v3H2zM3 3h1v1H3z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  image-rendering: pixelated;
+  filter: drop-shadow(3px 3px 0 var(--shadow-color));
+  opacity: 0.7;
+  transform: rotate(90deg);
+}
+
+.header.collapsible.collapsed::before {
+  transform: none;
+}
+
+.header.collapsible:hover::before,
+.header.collapsible:focus-visible::before {
+  opacity: 1;
+}
+
+.header.collapsible:hover {
+  background-color: var(--background-translucent-light);
+}
+
+.header.collapsible:focus-visible {
+  outline: none;
+  border-color: #ffffffcc;
+}
+
+.wx-collapsed-away {
+  display: none !important;
+}
+
+.content {
+  width: 60%;
+
+  margin-left: calc(var(--site-padding) * 2);
+  margin-bottom: var(--site-padding);
+
+  font-size: 38px;
+  text-shadow: 2.45px 2.45px 0px var(--shadow-color);
+}
+
+.full-width {
+  width: calc(90% - var(--site-padding) * 2);
+}
+
+.offset-left {
+  margin-left: 32px;
+}
+
+dull {
+  font-size: 28px;
+  color: #999999ff;
+  text-shadow: 1.95px 1.95px 0px #ffffff20;
+}
+
+code {
+  background-color: var(--background-translucent-light);
+  padding: 4px;
+  padding-top: 0;
+  border: var(--background-translucent-light) solid 1px;
+}
+
+a {
+  color: rgb(154, 154, 255);
+}
+
+/* ---- Forms & data tables (shared by tool pages) ---- */
+
+input,
+select,
+button {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 2px 8px 6px;
+
+  background-color: var(--background-translucent);
+  border: 2px solid var(--background-translucent-light);
+  border-radius: 0;
+
+  font-family: 'WynnWynncraft';
+  font-size: 24px;
+  line-height: 1;
+  color: white;
+  text-shadow: 1.5px 1.5px 0px var(--shadow-color);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #ffffff66;
+}
+
+input::placeholder {
+  color: #ffffff55;
+  text-shadow: none;
+}
+
+input.invalid {
+  border-color: #ff6b6b;
+}
+
+/* Required but not filled in yet (e.g. reroll.js markNeeded). */
+input.needed,
+select.needed,
+.stepper:has(> input.needed) .stepper-buttons {
+  border-color: #ff6b6baa;
+}
+
+/* Masks a text input like a password without triggering browser
+   password-save prompts (type="password" would). */
+input.masked {
+  -webkit-text-security: disc;
+}
+
+/* Number steppers: the native spin arrows are hidden in every browser and
+   shared/stepper.js wraps each number input in .stepper with its own
+   pixel-style up/down buttons. */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.stepper {
+  display: inline-flex;
+  align-items: stretch;
+  max-width: 100%;
+  vertical-align: middle;
+
+  input {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+.stepper-buttons {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 18px;
+
+  background-color: var(--background-translucent);
+  border: 2px solid var(--background-translucent-light);
+  border-left: none;
+
+  button {
+    flex: 1 1 0;
+    min-height: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14px 8px;
+    image-rendering: pixelated;
+    opacity: 0.6;
+  }
+
+  button:hover {
+    background-color: var(--background-translucent-lighter);
+    opacity: 1;
+  }
+
+  .stepper-up {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 4' shape-rendering='crispEdges' fill='%23fff'%3E%3Cpath d='M3 0h1v1H3zM2 1h3v1H2zM1 2h5v1H1z'/%3E%3C/svg%3E");
+  }
+
+  .stepper-down {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 4' shape-rendering='crispEdges' fill='%23fff'%3E%3Cpath d='M1 1h5v1H1zM2 2h3v1H2zM3 3h1v1H3z'/%3E%3C/svg%3E");
+  }
+}
+
+.stepper:focus-within .stepper-buttons {
+  border-color: #ffffff66;
+}
+
+/* Chrome sizes a <select> from the fallback font's metrics and doesn't
+   re-measure once the pixel font loads, clipping the text until a relayout
+   (e.g. zooming). A fixed height avoids that; 1.5em (36px) matches the
+   buttons it sits next to. */
+select {
+  height: 1.5em;
+}
+
+option {
+  background-color: var(--background-color);
+}
+
+button {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: var(--background-translucent-lighter);
+}
+
+button.icon {
+  padding: 2px 10px 6px;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  accent-color: var(--text-yellow);
+}
+
+label.checkbox {
+  display: inline-block;
+  margin: 8px 0;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 260px);
+  gap: 8px 16px;
+  align-items: center;
+  margin: 8px 0 12px;
+
+  font-size: 28px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 8px 0;
+
+  font-size: 28px;
+}
+
+/* Item cards: a wrapping row of tiles, one per pool item. */
+.item-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 8px;
+}
+
+.price-credit {
+  display: block;
+  margin: 4px 0 8px;
+}
+
+.item-grid + .item-grid {
+  margin-top: 16px; /* separate groups more than rows within a group */
+}
+
+.item-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 132px;
+  padding: 24px 8px 8px;
+
+  background-color: var(--background-translucent);
+  border: 2px solid var(--background-translucent-light);
+  transition: border-color 0.2s;
+
+  --glow: var(--purple); /* texture glow colour (r g b) */
+
+  &.wide {
+    width: 168px;
+  }
+
+  &.in-offer {
+    border-color: #ffffff66;
+  }
+
+  .stepper {
+    width: 100%;
+    margin-top: auto; /* pin to the bottom so inputs line up across a row */
+  }
+}
+
+.item-price,
+.item-slots {
+  position: absolute;
+  top: 2px;
+  font-size: 20px;
+}
+
+.item-price {
+  left: 8px;
+  color: hsl(205, 10%, 74%); /* unpriced; priced items get a blue scale from reroll.js */
+  text-shadow: 2px 2px 0 var(--shadow-dark);
+}
+
+.item-slots {
+  right: 8px;
+  color: #999999ff;
+  text-shadow: 2px 2px 0 var(--shadow-dark);
+}
+
+/* Faint glow (the card's --glow) behind the texture; drop-shadow follows its outline. */
+.item-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 70px;
+  background: radial-gradient(circle, rgb(var(--glow) / 0.15) 0%, rgb(var(--glow) / 0.05) 45%, transparent 70%);
+}
+
+.item-img {
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 6px rgb(var(--glow) / 0.25));
+
+  &.placeholder {
+    filter: none;
+  }
+}
+
+.item-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 6px;
+
+  font-size: 22px;
+  line-height: 1;
+  text-align: center;
+}
+
+table.data {
+  border-collapse: collapse;
+  margin: 4px 0 8px;
+  font-size: 26px;
+
+  th {
+    padding: 4px 8px 8px;
+    text-align: left;
+    font-weight: normal;
+    color: #999999ff;
+    border-bottom: 1px solid var(--background-translucent-light);
+  }
+
+  td {
+    padding: 4px 8px;
+  }
+
+  input[type="number"] {
+    width: 90px;
+  }
+
+  input.narrow {
+    width: 64px;
+  }
+}
+
+.notes {
+  display: block;
+  margin-top: 8px;
+}

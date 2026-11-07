@@ -1,0 +1,142 @@
+/*
+ * Wynndex navigation sidebar. Loaded automatically by sidebar.js.
+ * Everything is prefixed with "wx-" so it can't collide with styles
+ * on pages hosted from other repos (e.g. /wynnilla).
+ */
+
+@font-face {
+  font-family: 'WynnWynncraft';
+  src: url('wynn-wynncraft.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --wx-sidebar-width: 60px;
+  --wx-active-color: #55ff55;
+}
+
+.wx-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  box-sizing: border-box;
+  width: var(--wx-sidebar-width);
+  padding: 8px 0;
+
+  background-color: #1b1b1b;
+  border-right: 2px solid #ffffff22;
+}
+
+.wx-sidebar-logo,
+.wx-sidebar-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  text-decoration: none;
+}
+
+.wx-sidebar-logo {
+  margin-bottom: 4px;
+}
+
+.wx-sidebar-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.wx-sidebar-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+.wx-sidebar-logo img {
+  border: 1px solid white;
+  box-sizing: border-box;
+}
+
+/* Page icons: 16x16 textures drawn at 2x, no box. */
+.wx-sidebar-link .wx-sidebar-icon {
+  width: 32px;
+  height: 32px;
+  opacity: 0.75;
+  transition: opacity 0.15s;
+}
+
+.wx-sidebar-link:hover .wx-sidebar-icon,
+.wx-sidebar-link:focus-visible .wx-sidebar-icon,
+.wx-sidebar-link.wx-active .wx-sidebar-icon {
+  opacity: 1;
+}
+
+/* Current page: tint the icon green. The icon is multiplied over a green
+   fill that is masked to the icon's own shape, so its shading is kept. */
+.wx-sidebar-link.wx-active .wx-sidebar-icon {
+  background-color: var(--wx-active-color);
+  -webkit-mask: var(--wx-icon) center / 100% 100% no-repeat;
+  mask: var(--wx-icon) center / 100% 100% no-repeat;
+}
+
+.wx-sidebar-link.wx-active .wx-sidebar-icon img {
+  mix-blend-mode: multiply;
+}
+
+/* Floating label to the right of the hovered icon. */
+.wx-sidebar-tip {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 10px);
+  transform: translateY(-50%);
+  pointer-events: none;
+
+  padding: 0 8px 4px;
+  white-space: nowrap;
+
+  background-color: #1b1b1bee;
+  border: 2px solid #ffffff66;
+  border-radius: 3px;
+
+  font-family: 'WynnWynncraft';
+  font-size: 22px;
+  line-height: 0.8;
+  color: white;
+  text-shadow: 1.5px 1.5px 0px #ffffff40;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.1s, visibility 0.1s;
+}
+
+.wx-active .wx-sidebar-tip {
+  color: var(--wx-active-color);
+}
+
+.wx-sidebar-link:hover .wx-sidebar-tip,
+.wx-sidebar-link:focus-visible .wx-sidebar-tip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Shift the page's main ".site" container out from under the sidebar. */
+body.wx-has-sidebar .site {
+  margin-left: var(--wx-sidebar-width);
+  width: calc(100% - var(--wx-sidebar-width) - var(--site-padding, 16px) * 2);
+}
