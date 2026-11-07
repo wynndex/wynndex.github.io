@@ -1,0 +1,44 @@
+name: Update prices
+
+# Hourly snapshot of Wynnventory prices for the items in data/lootpools.json,
+# plus right after the loot pools change so new items get prices quickly.
+# Needs the WYNNVENTORY_API_KEY repository secret (read:market scope). The key
+# is only passed to the script's environment; never echo it.
+on:
+  schedule:
+    - cron: '10 * * * *'
+  workflow_run:
+    workflows: ['Update loot pools']
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prices
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch prices
+        env:
+          WYNNVENTORY_API_KEY: ${{ secrets.WYNNVENTORY_API_KEY }}
+        run: python3 scripts/update_prices.py
+
+      - name: Commit if changed
+        run: |
+          if [ -z "$(git status --porcelain -- data/prices.json)" ]; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/prices.json
+          git commit -m "Update prices"
+          git pull --rebase
+          git push
