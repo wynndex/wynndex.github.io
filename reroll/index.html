@@ -21,24 +21,27 @@
 
         <div class="header">Run Info</div>
         <div class="content full-width">
-            <div class="form-grid">
-                <label for="pulls">Pulls</label>
-                <input id="pulls" type="number" min="1" step="1" placeholder="e.g. 1000">
+            <div class="run-info">
+                <div class="form-grid">
+                    <label for="pulls">Pulls</label>
+                    <input id="pulls" type="number" min="1" step="1" placeholder="e.g. 1000">
 
-                <label for="rerolls">Rerolls left</label>
-                <input id="rerolls" type="number" min="0" step="1" placeholder="e.g. 5">
+                    <label for="rerolls">Rerolls left</label>
+                    <input id="rerolls" type="number" min="0" step="1" placeholder="e.g. 5">
 
-                <!-- Liquid emerald adjustment, disabled (no LE data to suggest typical values).
-                <label for="em-current">Liquid emeralds in current offer</label>
-                <input id="em-current" type="text" placeholder="optional, e.g. 40le">
+                    <!-- Liquid emerald adjustment, disabled (no LE data to suggest typical values).
+                    <label for="em-current">Liquid emeralds in current offer</label>
+                    <input id="em-current" type="text" placeholder="optional, e.g. 40le">
 
-                <label for="em-typical">Typical liquid emeralds per roll</label>
-                <input id="em-typical" type="text" placeholder="optional, e.g. 32le">
-                -->
+                    <label for="em-typical">Typical liquid emeralds per roll</label>
+                    <input id="em-typical" type="text" placeholder="optional, e.g. 32le">
+                    -->
+                </div>
+                <div class="form-grid">
+                    <label for="token-price">Token cost</label>
+                    <input id="token-price" type="text" data-stepper placeholder="15le" title="What one token is worth to you, used to decide whether to use tokens. Accepts stx, le, eb and e. Bare numbers are LE. Arrows step by 1le.">
+                </div>
             </div>
-            <dull>
-                Make sure to lower the reroll count here every time you roll.
-            </dull>
             <!-- <dull>
                 The emerald fields only matter if both are filled in: the difference is added to your current offer's value.
             </dull> -->
@@ -53,13 +56,15 @@
             <div><dull id="camp-status"></dull></div>
             <div id="pool"></div>
             <dull id="price-credit" class="price-credit" hidden></dull>
-            <div class="form-row">
-                <label for="shiny-price">Shiny price <dull>(optional, not recommended)</dull> <span id="shiny-name"></span></label>
-                <input id="shiny-price" type="text" placeholder="e.g. 20stx" title="Accepts stx, le, eb and e, like 1.5stx or 1stx 20le. Bare numbers are LE.">
-            </div>
         </div>
 
+        <div class="header verdict tokens" id="token-banner" hidden></div>
+
         <div class="header" id="result-header">Result</div>
+        <div class="header verdict warning" id="empty-warning" hidden>
+            <span class="verdict-word">Warning</span>
+            <dull>You have nothing selected, make sure to input your previous rewards.</dull>
+        </div>
         <div class="content full-width" id="result">
             <dull>Fill in pulls, rerolls and the pool to see a result.</dull>
         </div>

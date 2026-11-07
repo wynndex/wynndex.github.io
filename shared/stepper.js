@@ -10,9 +10,17 @@
  * The buttons call stepUp()/stepDown() and fire `input` + `change`, so page
  * scripts listening on the input react exactly as if the user had typed.
  * Holding a button repeats. Include with: <script src="/shared/stepper.js"></script>
+ *
+ * Other inputs (e.g. text prices like "15le") opt in with a `data-stepper`
+ * attribute. Their buttons and the arrow keys fire a `stepper-step` event
+ * (detail: +1 or -1) instead, and the page does the stepping itself.
  */
 (function () {
   'use strict';
+
+  function custom(input, dir) {
+    input.dispatchEvent(new CustomEvent('stepper-step', { detail: dir, bubbles: true }));
+  }
 
   function makeButton(input, dir) {
     var btn = document.createElement('button');
@@ -29,6 +37,7 @@
     }
     function step() {
       if (input.disabled || input.readOnly) return stop();
+      if (input.type !== 'number') return custom(input, dir);
       var before = input.value;
       try {
         if (dir > 0) input.stepUp(); else input.stepDown();
@@ -65,12 +74,24 @@
     parent.insertBefore(wrap, input);
     wrap.appendChild(input);
     wrap.appendChild(buttons);
+
+    // Number inputs step on arrow keys natively; give opted-in ones the same.
+    if (input.type !== 'number') {
+      input.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+        if (input.disabled || input.readOnly) return;
+        e.preventDefault();
+        custom(input, e.key === 'ArrowUp' ? 1 : -1);
+      });
+    }
   }
+
+  var SELECTOR = 'input[type="number"], input[data-stepper]';
 
   function scan(root) {
     if (root.nodeType !== 1) return;
-    if (root.matches('input[type="number"]')) enhance(root);
-    root.querySelectorAll('input[type="number"]').forEach(enhance);
+    if (root.matches(SELECTOR)) enhance(root);
+    root.querySelectorAll(SELECTOR).forEach(enhance);
   }
 
   new MutationObserver(function (records) {

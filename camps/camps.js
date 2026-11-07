@@ -230,11 +230,13 @@
           iconImg(it, 'pool-row-img'),
           it.shiny ? el('img', { className: 'pool-row-glint', alt: '', src: TEXTURE_DIR + 'shiny.png' }) : null,
         ]),
-        el('span', { className: 'pool-row-name ' + it.cat }, [
+        el('span', { className: 'pool-row-name ' + it.cat + (it.shiny ? ' shiny' : '') }, [
           document.createTextNode(it.name),
           it.slots > 1 ? el('span', { className: 'pool-row-count', text: ' x' + it.slots }) : null,
+          // Shinies: tracker on its own line under the name (too long beside it).
+          it.shiny ? valueOf(it, 'pool-row-tracker') : null,
         ]),
-        valueOf(it, 'pool-row-value'),
+        it.shiny ? null : valueOf(it, 'pool-row-value'),
       ]);
     }));
   }
