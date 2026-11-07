@@ -273,6 +273,11 @@
   &.augment {
     color: rgb(var(--purple));
   }
+
+  /* Shinies: name and tracker stacked and centred. */
+  &.shiny {
+    text-align: center;
+  }
 }
 
 .pool-row-count {
@@ -290,8 +295,16 @@
   }
 }
 
+/* A shiny's tracker, on its own line under the name. */
+.pool-row-tracker {
+  display: block;
+  margin-top: 2px;
+  color: hsl(205, 100%, 76%);
+}
+
 .pool-row-name,
 .pool-row-count,
-.pool-row-value {
+.pool-row-value,
+.pool-row-tracker {
   text-shadow: 2px 2px 0 var(--shadow-dark);
 }
