@@ -44,8 +44,91 @@
   --verdict-color: #ff6b6b;
 }
 
+/* Under the verdict when it says Reroll but no rewards are entered. */
+.header.verdict.warning {
+  --verdict-color: #ff6b6b;
+}
+
 .header.verdict.tossup {
   --verdict-color: hsl(205, 100%, 76%);
+}
+
+/* The camp's shiny (reroll.js renderShinyCard): tracker under the name,
+   shrunk by fitText when too long, and a note where the count input would be. */
+.shiny-card {
+  .item-name {
+    margin-bottom: 2px;
+  }
+
+  .shiny-tracker {
+    align-self: stretch;
+    margin-bottom: 6px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  dull {
+    margin-top: auto;
+    font-size: 16px;
+    line-height: 1.1;
+    text-align: center;
+  }
+}
+
+/* Shiny glint (7x11 texture at 4x, like the 64px item art) in the icon's
+   top-left corner, as on the camps page. */
+.shiny-art {
+  position: relative;
+  display: block;
+  line-height: 0;
+}
+
+.shiny-glint {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 28px;
+  height: 44px;
+  image-rendering: pixelated;
+}
+
+/* Run Info: pulls/rerolls with the token value beside them (wraps below on
+   narrow screens). */
+.run-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 48px;
+}
+
+/* Token suggestion banner above the Result header (reroll.js tokenAdvice). */
+.header.verdict.tokens {
+  --verdict-color: #ffd94a;
+}
+
+/* X on the token banner (hides it until reload). */
+.banner-close {
+  float: right;
+  margin: 6px 10px 0 0;
+  padding: 0 8px;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  font-size: 28px;
+  line-height: 1;
+  text-shadow: inherit;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.banner-close:hover,
+.banner-close:focus-visible {
+  background: none;
+  opacity: 1;
 }
 
 /* Result header showing the verdict (reroll.js setVerdict). */

@@ -30,6 +30,12 @@
   var K_WARD = 1 / 6280;
   var SHINY_RATE = 1 / 100000;
 
+  // Lootrun tokens: each costs ~15 LE by default (editable) and adds TOKEN_PULLS pulls and one
+  // reroll; at most MAX_TOKENS per run.
+  var TOKEN_PULLS = 10;
+  var MAX_TOKENS = 3;
+  var TOKEN_COST_LE = 15;
+
   // Verdict is a "toss-up" when reroll and take are within this fraction.
   var TOSS_UP = 0.05;
 
@@ -117,9 +123,9 @@
     return Math.max(1, parseInt(row.slots, 10) || 1);
   }
 
-  // The loaded camp (and its items, counts and prices) and the shiny price
+  // The loaded camp (and its items, counts and prices, including the shiny's)
   // start fresh on every page load; everything else in `state` is remembered.
-  var NOT_SAVED = ['camp', 'rows', 'shinyPrice', 'pulls', 'rerolls'];
+  var NOT_SAVED = ['camp', 'rows', 'shiny', 'pulls', 'rerolls'];
 
   var state = {
     pulls: '',
@@ -129,7 +135,8 @@
     source: 'lowest',
     camp: '',
     rows: [], // filled by loading a camp
-    shinyPrice: '', // optional; counted only when set
+    shiny: null, // the camp's shiny { cat, name, subType, tracker, price }; counted only when priced
+    tokenPrice: TOKEN_COST_LE + 'le', // value of one token, typed by the visitor
   };
 
   (function restore() {
@@ -141,6 +148,8 @@
         if (k in s && NOT_SAVED.indexOf(k) === -1) state[k] = s[k];
       });
     } catch (e) { /* ignore corrupt state */ }
+    // A token value left blank comes back as the default.
+    if (!String(state.tokenPrice).trim()) state.tokenPrice = TOKEN_COST_LE + 'le';
   })();
 
   var saveTimer = null;
@@ -175,7 +184,7 @@
   // ---- Pool cards ----------------------------------------------------------
 
   // Item textures live in reroll/textures/, picked by kind rather than name:
-  //   mythics  -> their weapon/armour subtype (dagger.png, boots.png, ...),
+  //   mythics, shinies -> their weapon/armour subtype (dagger.png, boots.png, ...),
   //               from `subType` in data/lootpools.json
   //   wards    -> their colour ("Pink Ward" -> pink.png)
   //   augments -> their name ("Corkian Simulator" -> corkian_simulator.png)
@@ -195,7 +204,7 @@
 
   function textureOf(row) {
     var file;
-    if (row.cat === 'mythic') file = row.subType;
+    if (row.cat === 'mythic' || row.cat === 'shiny') file = row.subType;
     else if (row.cat === 'ward') file = row.name.split(' ')[0];
     else file = row.name.replace(/\s+/g, '_');
     return file ? TEXTURE_DIR + file.toLowerCase() + '.png' : PLACEHOLDER_IMG;
@@ -243,6 +252,54 @@
       });
       if (rows.length) pool.appendChild(el('div', { className: 'item-grid' }, rows.map(renderCard)));
     });
+
+    // The shiny gets its own row; its price is always typed by hand.
+    if (state.shiny) {
+      var card = renderShinyCard(state.shiny);
+      pool.appendChild(el('div', { className: 'item-grid' }, [card]));
+      var tracker = card.querySelector('.shiny-tracker');
+      if (tracker) {
+        fitText(tracker);
+        if (document.fonts) document.fonts.ready.then(function () { fitText(tracker); });
+      }
+    }
+  }
+
+  // Shrink a single-line element's font until its text fits its width.
+  function fitText(node) {
+    node.style.fontSize = '';
+    var size = parseFloat(getComputedStyle(node).fontSize);
+    while (node.scrollWidth > node.clientWidth && size > 8) {
+      size -= 1;
+      node.style.fontSize = size + 'px';
+    }
+  }
+
+  function itemImg(row) {
+    var src = textureOf(row);
+    var img = el('img', { className: 'item-img' + (src === PLACEHOLDER_IMG ? ' placeholder' : ''), alt: '', src: src });
+    img.addEventListener('error', function () {
+      img.src = PLACEHOLDER_IMG;
+      img.classList.add('placeholder');
+    }, { once: true });
+    return img;
+  }
+
+  // Like renderCard, but with the tracker under the name and a note in place
+  // of the count input (the current offer is assumed not to hold a shiny).
+  function renderShinyCard(shiny) {
+    return el('div', { className: 'item-card shiny-card' }, [
+      renderPrice(shiny),
+      el('div', { className: 'item-art' }, [
+        el('span', { className: 'shiny-art' }, [
+          itemImg(shiny),
+          el('img', { className: 'shiny-glint', alt: '', src: TEXTURE_DIR + 'shiny.png' }),
+        ]),
+      ]),
+      el('div', { className: 'item-name', text: shiny.name }),
+      shiny.tracker ? el('div', { className: 'shiny-tracker', text: shiny.tracker }) : null,
+      el('dull', { text: '(price optional, if blank the shiny is ignored)' }),
+    ]);
   }
 
   // Prices autofilled from Wynnventory are read-only; anything else can be
@@ -289,12 +346,7 @@
   function renderCard(row) {
     var price = renderPrice(row);
 
-    var src = textureOf(row);
-    var img = el('img', { className: 'item-img' + (src === PLACEHOLDER_IMG ? ' placeholder' : ''), alt: '', src: src });
-    img.addEventListener('error', function () {
-      img.src = PLACEHOLDER_IMG;
-      img.classList.add('placeholder');
-    }, { once: true });
+    var img = itemImg(row);
 
     var count = el('input', { type: 'number', min: '0', step: '1', title: 'How many are in your current offer' });
     count.value = row.count;
@@ -326,18 +378,30 @@
       input.value = state[pair[1]];
       input.addEventListener('input', function () {
         state[pair[1]] = input.value;
+        if (pair[1] === 'pulls' || pair[1] === 'rerolls') tokenDismissed = false;
         if (input.type === 'text') markInvalid(input, parseEm(input.value));
         changed();
       });
       if (input.type === 'text') markInvalid(input, parseEm(input.value));
     });
 
-    var price = $('shiny-price');
-    price.addEventListener('input', function () {
-      state.shinyPrice = price.value;
-      markInvalid(price, parseEm(price.value));
+    var token = $('token-price');
+    token.value = state.tokenPrice;
+    markInvalid(token, parseEm(token.value));
+    token.addEventListener('input', function () {
+      state.tokenPrice = token.value;
+      markInvalid(token, parseEm(token.value));
       changed();
     });
+    // Stepper arrows (shared/stepper.js): +/- 1 LE, shown in LE.
+    token.addEventListener('stepper-step', function (e) {
+      var v = parseEm(token.value);
+      if (v === null || isNaN(v)) v = tokenCost();
+      var le = Math.max(0, Math.round(v / E_LE) + e.detail);
+      token.value = le + 'le';
+      token.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
   }
 
   // ---- Math ----------------------------------------------------------------
@@ -452,10 +516,58 @@
     $('camp').classList.toggle('needed', !state.rows.length);
   }
 
+  // Yellow banner above the Result header, shown only when using tokens
+  // beats not using them. Tokens are assumed to affect later rolls only (the
+  // current offer is already rolled), so with t tokens the run is worth
+  //   V(t) = max(current, c_{R+t} at pulls + 10t) - t * cost
+  // (just `current` when there are no rerolls at all).
+  // The X or the reroll button (tokens are used before rerolling) hides it
+  // until pulls or rerolls are edited by hand. Not saved across reloads.
+  var tokenDismissed = false;
+
+  // Value of one token in emeralds (the default while blank or unreadable).
+  function tokenCost() {
+    var v = parseEm(state.tokenPrice);
+    return v === null || isNaN(v) ? TOKEN_COST_LE * E_LE : v;
+  }
+
+  function setTokenBanner(n, gain) {
+    var banner = $('token-banner');
+    banner.textContent = '';
+    banner.hidden = !n || tokenDismissed;
+    if (banner.hidden) return;
+    var close = el('button', { type: 'button', className: 'banner-close', text: 'X' });
+    close.title = 'Hide';
+    close.setAttribute('aria-label', 'Hide token suggestion');
+    close.addEventListener('click', function () {
+      tokenDismissed = true;
+      setTokenBanner(0);
+    });
+    banner.appendChild(close);
+    banner.appendChild(el('span', { className: 'verdict-word', text: 'Use ' + n + ' token' + (n === 1 ? '' : 's') }));
+    banner.appendChild(document.createTextNode(' '));
+    banner.appendChild(el('dull', { text: 'Worth ' + fmtEm(gain) + ' more on average, assuming a ' + fmtEm(n * tokenCost()) + ' cost. Ignore this popup if you have already ended your run.' }));
+  }
+
+  function tokenAdvice(items, pulls, rerolls, current, baseValue) {
+    var best = 0;
+    var bestValue = baseValue;
+    for (var t = 1; t <= MAX_TOKENS; t++) {
+      var st = prepareStats(offerDistribution(items, pulls + TOKEN_PULLS * t));
+      var c = st.mean;
+      for (var k = 2; k <= rerolls + t; k++) c = st.eMax(c);
+      var v = Math.max(current, c) - t * tokenCost();
+      if (v > bestValue) { best = t; bestValue = v; }
+    }
+    setTokenBanner(best, bestValue - baseValue);
+  }
+
   function compute() {
     var out = $('result');
     out.textContent = '';
     setVerdict(null);
+    setTokenBanner(0);
+    $('empty-warning').hidden = true;
     markNeeded();
 
     function msg(text) { out.appendChild(el('dull', { text: text })); }
@@ -487,7 +599,7 @@
 
     // Shiny: only counted when a price is entered. It's a possible reroll
     // outcome; the current offer is assumed not to contain one.
-    var sv = parseEm(state.shinyPrice);
+    var sv = state.shiny ? parseEm(state.shiny.price) : null;
     if (sv !== null) {
       if (isNaN(sv)) bad = true;
       else {
@@ -522,17 +634,19 @@
       var close = Math.abs(keepValue - current) <= TOSS_UP * Math.max(current, keepValue);
       var kind = close ? 'tossup' : reroll ? 'reroll' : 'take';
       setVerdict(kind, close ? 'Toss-up' : reroll ? 'Reroll' : 'Take it',
-        (reroll && current === 0
-          ? '\u{1F6A8} It says you have nothing selected!! Make sure to input your rewards!'
-          : reroll
+        (reroll
           ? 'Rerolling is worth ' + fmtEm(keepValue - current) + ' more on average' +
             (close ? ', but this depends on your raw LE offers.' : '.')
           : 'Taking it is worth ' + fmtEm(current - keepValue) + ' more than rerolling' +
             (close ? ', but this depends on your raw LE offers.' : '.')));
+      // Nothing entered for the current offer: probably not filled in yet.
+      $('empty-warning').hidden = !(reroll && current === 0);
       // Always offered while rerolls remain, whatever the verdict, so it
       // doesn't vanish as the current offer is being typed in.
       out.appendChild(rerollButton(rerolls));
     }
+
+    tokenAdvice(items, pulls, rerolls, current, rerolls > 0 ? Math.max(current, thresholds[rerolls]) : current);
 
     var lines = [
       ['Current',fmtEm(current) + (emDelta ? ' (incl. ' + (emDelta > 0 ? '+' : '') + fmtEm(emDelta) + ' emeralds vs typical)' : '')],
@@ -567,6 +681,7 @@
       text: 'Click me to reroll; ' + rerolls + ' roll' + (rerolls === 1 ? '' : 's') + ' left.',
     });
     btn.addEventListener('click', function () {
+      tokenDismissed = true;
       state.rerolls = String(Math.max(0, rerolls - 1));
       $('rerolls').value = state.rerolls;
       state.rows.forEach(function (r) { r.count = 0; });
@@ -666,12 +781,15 @@
     // each slot adds a full share of the drop chance.
     var rows = [];
     var byKey = {};
-    var shinyName = '';
+    var shiny = null;
     (camp.rewards || []).forEach(function (reward) {
       var cat = classify(reward);
       if (!cat || !reward.name) return;
       var name = displayName(reward.name);
-      if (cat === 'shiny') { shinyName = shinyName || name; return; }
+      if (cat === 'shiny') {
+        shiny = shiny || { cat: 'shiny', name: 'Shiny ' + name, subType: reward.subType || '', tracker: reward.shinyTracker || '', price: '', api: null };
+        return;
+      }
       var amount = parseInt(reward.amount, 10);
       var key = cat + ':' + name;
       var row = byKey[key];
@@ -686,9 +804,9 @@
     });
 
     state.rows = rows;
+    state.shiny = shiny;
     applyShared();
     applySource();
-    $('shiny-name').textContent = shinyName;
     setCampStatus('');
     renderPool();
     changed();

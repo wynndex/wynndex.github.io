@@ -307,6 +307,14 @@ label.checkbox {
   font-size: 28px;
 }
 
+/* The pixel font's glyphs sit ~0.1em below the centre of their line box, so
+   labels centred beside an input look low; lift them (inputs do the same
+   with their uneven padding). */
+.form-grid > label,
+.form-row > label {
+  padding-bottom: 0.2em;
+}
+
 /* Item cards: a wrapping row of tiles, one per pool item. */
 .item-grid {
   display: flex;
