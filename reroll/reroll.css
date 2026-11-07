@@ -1,0 +1,60 @@
+/* Reroll page only; shared item-card styles are in shared/style.css. */
+
+/* Typed prices (reroll.js): looks identical to a read-only price. */
+.item-price.editable {
+  min-width: 0.6em;
+  cursor: text;
+  outline: none;
+
+  border-bottom: 2px dashed transparent;
+
+  /* Missing price: prompt to type one. */
+  &:empty {
+    border-bottom-color: #ffffff40;
+  }
+
+  &:empty::before {
+    content: 'enter price';
+    opacity: 0.8;
+  }
+
+  &:focus:empty::before {
+    content: '';
+  }
+
+  &:hover,
+  &:focus {
+    border-bottom-color: #ffffff80;
+  }
+
+  &:empty:hover::before {
+    opacity: 1;
+  }
+}
+
+.item-price.invalid {
+  color: #ff6b6b !important;
+}
+
+.header.verdict.reroll {
+  --verdict-color: #6bdc6b;
+}
+
+.header.verdict.take {
+  --verdict-color: #ff6b6b;
+}
+
+.header.verdict.tossup {
+  --verdict-color: hsl(205, 100%, 76%);
+}
+
+/* Result header showing the verdict (reroll.js setVerdict). */
+.header.verdict {
+  border-color: var(--verdict-color);
+  background-color: color-mix(in srgb, var(--verdict-color) 12%, transparent);
+
+  .verdict-word {
+    color: var(--verdict-color);
+    text-shadow: 3px 3px 0px #00000059; /* softer than --shadow-dark */
+  }
+}

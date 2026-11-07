@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../shared/style.css">
+    <link rel="stylesheet" href="reroll.css">
+    <script src="/shared/sidebar.js"></script>
+    <script src="/shared/stepper.js"></script>
+    <script src="/shared/collapse.js" defer></script>
+    <script src="reroll.js" defer></script>
+    <title>Reroll - Wynndex</title>
+</head>
+<body>
+    <div class="site">
+        <div class="header">Instructions</div>
+        <div class="content full-width">
+            Enter your run information into "Run Info", load your camp in "Reward Chest" and mark your current end chest offers.
+            Then, the tool will tell you if you should reroll or not.
+        </div>
+
+        <div class="header">Run Info</div>
+        <div class="content full-width">
+            <div class="form-grid">
+                <label for="pulls">Pulls</label>
+                <input id="pulls" type="number" min="1" step="1" placeholder="e.g. 1000">
+
+                <label for="rerolls">Rerolls left</label>
+                <input id="rerolls" type="number" min="0" step="1" placeholder="e.g. 5">
+
+                <!-- Liquid emerald adjustment, disabled (no LE data to suggest typical values).
+                <label for="em-current">Liquid emeralds in current offer</label>
+                <input id="em-current" type="text" placeholder="optional, e.g. 40le">
+
+                <label for="em-typical">Typical liquid emeralds per roll</label>
+                <input id="em-typical" type="text" placeholder="optional, e.g. 32le">
+                -->
+            </div>
+            <dull>
+                Make sure to lower the reroll count here every time you roll.
+            </dull>
+            <!-- <dull>
+                The emerald fields only matter if both are filled in: the difference is added to your current offer's value.
+            </dull> -->
+        </div>
+
+        <div class="header">Reward Chest</div>
+        <div class="content full-width">
+            <div class="form-row">
+                <select id="camp"><option value="">Loading camps...</option></select>
+                <button id="camp-load" type="button">Load camp</button>
+            </div>
+            <div><dull id="camp-status"></dull></div>
+            <div id="pool"></div>
+            <dull id="price-credit" class="price-credit" hidden></dull>
+            <div class="form-row">
+                <label for="shiny-price">Shiny price <dull>(optional, not recommended)</dull> <span id="shiny-name"></span></label>
+                <input id="shiny-price" type="text" placeholder="e.g. 20stx" title="Accepts stx, le, eb and e, like 1.5stx or 1stx 20le. Bare numbers are LE.">
+            </div>
+        </div>
+
+        <div class="header" id="result-header">Result</div>
+        <div class="content full-width" id="result">
+            <dull>Fill in pulls, rerolls and the pool to see a result.</dull>
+        </div>
+
+        <div class="header" data-collapsible data-collapsed>Live Wynnventory Data <dull>(advanced, optional)</dull></div>
+        <div class="content full-width">
+            <dull>
+                Item prices are filled in automatically from Wynnventory (refreshed hourly).
+                For live prices, paste your own <a href="https://wynnventory.com/developer/api-key" target="_blank">Wynnventory API key</a>
+            </dull>
+            <div class="form-row">
+                <label for="price-source">Prices from</label>
+                <select id="price-source">
+                    <option value="lowest">Lowest unidentified listing</option>
+                    <option value="smooth">Smoothed median (7-day)</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <input id="api-key" class="masked" type="text" placeholder="API key" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-1p-ignore data-lpignore="true" data-bwignore data-form-type="other">
+                <button id="api-save" type="button">Save</button>
+                <button id="api-forget" type="button">Forget</button>
+            </div>
+            <div id="api-controls" hidden>
+                <div class="form-row">
+                    <button id="price-refresh" type="button">Refresh live prices</button>
+                </div>
+            </div>
+            <dull id="api-status"></dull>
+        </div>
+    </div>
+</body>
+</html>
