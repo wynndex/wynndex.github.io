@@ -273,12 +273,51 @@ button.icon {
   padding: 2px 10px 6px;
 }
 
+/* Checkboxes: drawn like the stepper buttons (same box, hover and opacity),
+   with an 8x5 pixel checkmark (2px-thick strokes) at the arrows' 2x scale
+   when checked. The checkmark is a background image, so its opacity lives in
+   two copies of the SVG. */
 input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin: 0 4px 0 0;
+  padding: 0;
   vertical-align: middle;
-  accent-color: var(--text-yellow);
+  cursor: pointer;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 10px;
+  image-rendering: pixelated;
+  transition: background-color 0.2s;
+
+  &:hover,
+  label.checkbox:hover & {
+    background-color: var(--background-translucent-lighter);
+  }
+
+  &:checked {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 5' shape-rendering='crispEdges' fill='%23fff' fill-opacity='0.6'%3E%3Cpath d='M6 0h2v1H6zM5 1h2v1H5zM0 2h2v1H0zM4 2h2v1H4zM1 3h4v1H1zM2 4h2v1H2z'/%3E%3C/svg%3E");
+  }
+
+  &:checked:hover,
+  label.checkbox:hover &:checked {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 5' shape-rendering='crispEdges' fill='%23fff' fill-opacity='1'%3E%3Cpath d='M6 0h2v1H6zM5 1h2v1H5zM0 2h2v1H0zM4 2h2v1H4zM1 3h4v1H1zM2 4h2v1H2z'/%3E%3C/svg%3E");
+  }
+
+  /* Only show the focus border for keyboard focus, not after a click. */
+  &:focus {
+    border-color: var(--background-translucent-light);
+  }
+
+  &:focus-visible {
+    border-color: #ffffff66;
+  }
 }
+
 
 label.checkbox {
   display: inline-block;
@@ -378,6 +417,42 @@ label.checkbox {
   right: 8px;
   color: #999999ff;
   text-shadow: 2px 2px 0 var(--shadow-dark);
+}
+
+/* Typed prices (reroll and camps pages): looks identical to a read-only price. */
+.item-price.editable {
+  min-width: 0.6em;
+  cursor: text;
+  outline: none;
+
+  border-bottom: 2px dashed transparent;
+
+  /* Missing price: prompt to type one. */
+  &:empty {
+    border-bottom-color: #ffffff40;
+  }
+
+  &:empty::before {
+    content: 'enter price';
+    opacity: 0.8;
+  }
+
+  &:focus:empty::before {
+    content: '';
+  }
+
+  &:hover,
+  &:focus {
+    border-bottom-color: #ffffff80;
+  }
+
+  &:empty:hover::before {
+    opacity: 1;
+  }
+}
+
+.item-price.invalid {
+  color: #ff6b6b !important;
 }
 
 /* Faint glow (the card's --glow) behind the texture; drop-shadow follows its outline. */

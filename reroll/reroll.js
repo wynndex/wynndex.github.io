@@ -97,13 +97,17 @@
     return String(parseFloat(n.toFixed(digits)));
   }
 
+  // Whole stx + le (e.g. "2stx 32le"); eb/e only below 1le.
   function fmtEm(e) {
     var sign = e < 0 ? '-' : '';
     var a = Math.abs(e);
-    if (a >= E_STX) return sign + trim(a / E_STX, 2) + 'stx';
-    if (a >= E_LE) return sign + trim(a / E_LE, 1) + 'le';
-    if (a >= E_EB) return sign + trim(a / E_EB, 1) + 'eb';
-    return sign + Math.round(a) + 'e';
+    var big = a >= E_LE;
+    var n = Math.round(big ? a / E_LE : a);
+    var parts = big ? [[Math.floor(n / 64), 'stx'], [n % 64, 'le']]
+                    : [[Math.floor(n / 64), 'eb'], [n % 64, 'e']];
+    var s = parts.filter(function (p) { return p[0]; })
+      .map(function (p) { return p[0] + p[1]; }).join(' ');
+    return s ? sign + s : '0e';
   }
 
   function fmtPct(p) {
@@ -196,7 +200,7 @@
 
   // Muted grey-blue for cheap items up to vibrant blue for pricey ones.
   function priceColor(cat, v) {
-    var scale = PRICE_SCALE[cat];
+    var scale = PRICE_SCALE[cat === 'shiny' ? 'mythic' : cat]; // shinies share the mythic scale
     if (!scale || !v) return '';
     var t = Math.min(1, Math.max(0, (v - scale.lo) / (scale.hi - scale.lo)));
     return 'hsl(205, ' + Math.round(10 + 90 * t) + '%, ' + Math.round(74 + 2 * t) + '%)';
@@ -310,7 +314,7 @@
 
     function show() {
       var v = parseEm(row.price);
-      // Valid prices are shown normalised (e.g. "2.5stx"); bad input is kept as typed.
+      // Valid prices are shown normalised (e.g. "2stx 32le"); bad input is kept as typed.
       price.textContent = v ? fmtEm(v) : (v === null || v === 0 ? '' : row.price);
       paint();
     }
