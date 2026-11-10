@@ -6,6 +6,15 @@
   right: 8px;
 }
 
+/* Shiny price field: its own placeholder (the shared one says "enter price"). */
+.item-price.editable.shiny-price:empty::before {
+  content: 'enter shiny price';
+}
+
+.item-price.editable.shiny-price:focus:empty::before {
+  content: '';
+}
+
 /* A pile of small, overlapping item icons in place of one big texture (camps page). */
 .item-art.pool-icons {
   flex-wrap: wrap;

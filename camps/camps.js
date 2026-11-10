@@ -396,7 +396,7 @@
     }
     card.back.inert = true;
     // Judged by where the press started: focusing an empty shiny price hides
-    // its "enter price" placeholder, shrinking it, so the release (and thus
+    // its "enter shiny price" placeholder, shrinking it, so the release (and thus
     // the click's target) can land on the card instead.
     var pressedOnEditor = false;
     card.node.addEventListener('pointerdown', function (e) {
