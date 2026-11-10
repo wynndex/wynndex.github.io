@@ -1,5 +1,11 @@
 /* Camps page only; shared item-card styles are in shared/style.css. */
 
+/* Camp score in the card's top-right corner (shared .item-price sits top-left). */
+.item-price.camp-score {
+  left: auto;
+  right: 8px;
+}
+
 /* A pile of small, overlapping item icons in place of one big texture (camps page). */
 .item-art.pool-icons {
   flex-wrap: wrap;

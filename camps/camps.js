@@ -4,8 +4,10 @@
  * Score = SCORE_SCALE * average LE per pull from the camp's rare rewards /
  * minutes per challenge (entered per camp). LE per pull is sum(per-pull rate * price) over
  * the pool's mythics, augments and wards, using the same drop-rate model as
- * reroll/reroll.js (keep the constants below in sync with it). Shinies (manual
- * prices only) and everything else in an offer are left out.
+ * reroll/reroll.js (keep the constants below in sync with it). Shinies have no
+ * market price: with "Include Shinies" ticked, each camp's shiny counts at the
+ * price typed on its card (blank = ignored). Everything else in an offer is
+ * left out.
  *
  * Pools come from data/lootpools.json, prices from the data/prices.json
  * snapshot (lowest unidentified listing, falling back to identified).
@@ -18,6 +20,7 @@
   var K_AUGMENT = 1 / 5625;
   var K_WARD = 1 / 6280;
   var AUGMENT_NAMES = ['corkian simulator', 'corkian insulator'];
+  var SHINY_RATE = 1 / 100000;
 
   var E_LE = 64 * 64;
   // Default minutes per challenge, matched against camp names; camps not
@@ -29,7 +32,7 @@
     [/canyon of the lost/i, 0.85],
     [/sky islands/i, 0.85],
     [/silent expanse/i, 0.9],
-    [/fruma/i, 1.1],
+    [/fruma/i, 1.15],
   ];
 
   function defaultMinutes(name) {
@@ -49,11 +52,19 @@
 
   // ---- Storage (best effort) -----------------------------------------------
 
-  // { minutes: { campName: "3" } }
-  var state = { minutes: {} };
+  // { minutes: { campName: "3" }, includeShinies: false,
+  // (minutes only holds camps whose input was edited, so untouched cards
+  // follow changes to CAMP_MINUTES)
+  //   shinyPrices: { "campName|Shiny Item": "2stx" }, shinyWeek: "2026-11-06" }
+  // Shiny prices only last for the pool week they were typed in (shinyWeek,
+  // see poolWeek); they're cleared once the pools reset.
+  var state = { minutes: {}, includeShinies: false, shinyPrices: {}, shinyWeek: '' };
   try {
     var saved = JSON.parse(window.localStorage.getItem(STATE_KEY) || 'null');
     if (saved && saved.minutes) state.minutes = saved.minutes;
+    if (saved && saved.includeShinies) state.includeShinies = true;
+    if (saved && saved.shinyPrices) state.shinyPrices = saved.shinyPrices;
+    if (saved && saved.shinyWeek) state.shinyWeek = saved.shinyWeek;
   } catch (e) { /* ignore */ }
 
   function persist() {
@@ -84,15 +95,30 @@
     ward: { lo: E_STX, hi: 3 * E_STX },
   };
 
-  function trim(n, digits) {
-    return String(parseFloat(n.toFixed(digits)));
+  // Whole stx + le (e.g. "2stx 32le"); eb/e only below 1le.
+  function fmtEm(e) {
+    var sign = e < 0 ? '-' : '';
+    var a = Math.abs(e);
+    var big = a >= E_LE;
+    var n = Math.round(big ? a / E_LE : a);
+    var parts = big ? [[Math.floor(n / 64), 'stx'], [n % 64, 'le']]
+                    : [[Math.floor(n / 64), 'eb'], [n % 64, 'e']];
+    var s = parts.filter(function (p) { return p[0]; })
+      .map(function (p) { return p[0] + p[1]; }).join(' ');
+    return s ? sign + s : '0e';
   }
 
-  function fmtEm(e) {
-    if (e >= E_STX) return trim(e / E_STX, 2) + 'stx';
-    if (e >= E_LE) return trim(e / E_LE, 1) + 'le';
-    if (e >= E_EB) return trim(e / E_EB, 1) + 'eb';
-    return Math.round(e) + 'e';
+  // Same as reroll.js: emeralds, null for empty input, or NaN when unparseable.
+  var UNIT = { stx: E_STX, le: E_LE, eb: E_EB, e: 1 };
+  function parseEm(input) {
+    var s = String(input || '').trim().toLowerCase().replace(/,/g, '');
+    if (!s) return null;
+    var re = /(\d*\.?\d+)\s*(stx|le|eb|e)?/g;
+    var total = 0;
+    var m;
+    while ((m = re.exec(s))) total += parseFloat(m[1]) * UNIT[m[2] || 'le'];
+    if (s.replace(re, '').trim() !== '') return NaN;
+    return total;
   }
 
   // Muted grey-blue at/below lo up to vibrant blue at/above hi.
@@ -122,6 +148,21 @@
     return Math.round(hours / 24) + ' days ago';
   }
 
+  // The pool week a timestamp falls in, named by the New York date of the
+  // reset that started it (pools reset Fridays 1 PM New York time).
+  function poolWeek(iso) {
+    var t = new Date(iso);
+    if (isNaN(t)) return '';
+    var p = {};
+    new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York', weekday: 'short', year: 'numeric',
+      month: '2-digit', day: '2-digit', hour: '2-digit', hourCycle: 'h23',
+    }).formatToParts(t).forEach(function (part) { p[part.type] = part.value; });
+    var back = (['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(p.weekday) + 2) % 7; // days since Friday
+    if (back === 0 && +p.hour < 13) back = 7;
+    return new Date(Date.UTC(+p.year, +p.month - 1, +p.day - back)).toISOString().slice(0, 10);
+  }
+
   // "CORKIAN INSULATOR" -> "Corkian Insulator"; other names are left alone.
   function displayName(name) {
     if (name !== name.toUpperCase()) return name;
@@ -148,7 +189,7 @@
 
   // Average LE per pull, how many rare items had no price, and the rare items
   // themselves (repeats merged into one entry with more slots). Shinies are
-  // shown but not scored (their prices are manual-only on the reroll page).
+  // shown but not scored here; see shinyPerPull.
   function campValue(camp, prices) {
     var slots = { mythic: [], augment: [], ward: [] };
     var shinies = [];
@@ -183,7 +224,15 @@
         perPull += rate[cat] * it.slots * price / E_LE;
       });
     });
-    return { perPull: perPull, unpriced: unpriced, items: shinies.concat(slots.mythic, slots.augment, slots.ward) };
+    return { perPull: perPull, unpriced: unpriced, shiny: shinies[0] || null, items: shinies.concat(slots.mythic, slots.augment, slots.ward) };
+  }
+
+  // LE per pull from the camp's shiny (like reroll.js, only the first one
+  // counts), when shinies are included and its price is typed.
+  function shinyPerPull(card) {
+    if (!state.includeShinies || !card.shinyKey) return 0;
+    var v = parseEm(state.shinyPrices[card.shinyKey]);
+    return v > 0 ? SHINY_RATE * v / E_LE : 0;
   }
 
   function minutesOf(name) {
@@ -268,11 +317,49 @@
 
   function updateScore(card) {
     var mins = minutesOf(card.name);
-    card.score = mins ? SCORE_SCALE * card.value.perPull / mins : -1;
+    var shiny = shinyPerPull(card);
+    var perPull = card.value.perPull + shiny;
+    card.score = mins ? SCORE_SCALE * perPull / mins : -1;
     card.scoreNode.textContent = mins ? sig(card.score) : '?';
     card.scoreNode.style.color = mins ? blueScale(card.score, SCORE_COLOR.lo, SCORE_COLOR.hi) : '';
-    card.scoreNode.title = sig(card.value.perPull) + ' le per pull' + (mins ? ' / ' + mins + ' min per challenge' : '') +
+    card.scoreNode.title = sig(perPull) + ' le per pull' + (shiny ? ' (' + sig(shiny) + ' from the shiny)' : '') +
+      (mins ? ' / ' + mins + ' min per challenge' : '') +
       (card.value.unpriced ? ' (' + card.value.unpriced + ' unpriced item' + (card.value.unpriced === 1 ? '' : 's') + ' counted as 0)' : '');
+  }
+
+  // Typed shiny price in the card's top-left corner (shown while shinies are
+  // included), editable like the reroll page's missing prices.
+  function shinyPriceInput(card, onChange) {
+    var price = el('span', { className: 'item-price editable shiny-price' });
+    try { price.contentEditable = 'plaintext-only'; } catch (e) { price.contentEditable = 'true'; }
+    price.spellcheck = false;
+    price.title = card.value.shiny.name + ': type a price, e.g. 2.5stx or 1stx 20le (bare numbers are LE)';
+
+    function raw() { return state.shinyPrices[card.shinyKey] || ''; }
+    function paint() {
+      var v = parseEm(raw());
+      price.classList.toggle('invalid', typeof v === 'number' && isNaN(v));
+      price.style.color = priceColor('mythic', v); // shinies share the mythic scale
+    }
+    function show() {
+      var v = parseEm(raw());
+      price.textContent = v ? fmtEm(v) : (v === null || v === 0 ? '' : raw());
+      paint();
+    }
+    price.addEventListener('input', function () {
+      var text = price.textContent.trim();
+      if (text) state.shinyPrices[card.shinyKey] = text;
+      else delete state.shinyPrices[card.shinyKey];
+      persist();
+      paint();
+      onChange();
+    });
+    price.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === 'Escape') { e.preventDefault(); price.blur(); }
+    });
+    price.addEventListener('blur', show);
+    show();
+    return price;
   }
 
   function rank() {
@@ -282,7 +369,8 @@
 
   function renderCard(camp, prices) {
     var card = { name: camp.name, value: campValue(camp, prices) };
-    card.scoreNode = el('span', { className: 'item-price' });
+    card.scoreNode = el('span', { className: 'item-price camp-score' });
+    card.shinyKey = card.value.shiny ? camp.name + '|' + card.value.shiny.name : null;
 
     var input = el('input', { type: 'number', min: '0.05', step: '0.05', title: 'Minutes per challenge at this camp' });
     input.value = state.minutes[camp.name] !== undefined ? state.minutes[camp.name] : defaultMinutes(camp.name);
@@ -307,8 +395,15 @@
       card.back.inert = !flipped;
     }
     card.back.inert = true;
+    // Judged by where the press started: focusing an empty shiny price hides
+    // its "enter price" placeholder, shrinking it, so the release (and thus
+    // the click's target) can land on the card instead.
+    var pressedOnEditor = false;
+    card.node.addEventListener('pointerdown', function (e) {
+      pressedOnEditor = !!e.target.closest('.stepper, input, .shiny-price');
+    });
     card.node.addEventListener('click', function (e) {
-      if (e.target.closest('.stepper, input')) return; // editing minutes, not flipping
+      if (pressedOnEditor || e.target.closest('.stepper, input, .shiny-price')) return; // editing, not flipping
       flip();
     });
     card.node.addEventListener('keydown', function (e) {
@@ -318,24 +413,46 @@
     });
 
     var timer = null;
-    input.addEventListener('input', function () {
-      state.minutes[camp.name] = input.value;
-      persist();
+    function rescore() {
       updateScore(card);
       clearTimeout(timer);
       timer = setTimeout(rank, RESORT_DELAY);
+    }
+    input.addEventListener('input', function () {
+      state.minutes[camp.name] = input.value;
+      persist();
+      rescore();
     });
+    if (card.shinyKey) {
+      card.shinyPriceNode = shinyPriceInput(card, rescore);
+      card.shinyPriceNode.hidden = !state.includeShinies;
+      card.front.insertBefore(card.shinyPriceNode, card.scoreNode);
+    }
 
     updateScore(card);
     return card;
   }
 
   function render(pools, prices) {
+    // New pool week: last week's shiny prices no longer apply.
+    var week = poolWeek(pools.updated_at);
+    if (week && week !== state.shinyWeek) {
+      state.shinyPrices = {};
+      state.shinyWeek = week;
+      persist();
+    }
+
     var grid = $('ranking');
     grid.textContent = '';
     cards = (pools.camps || []).map(function (camp) { return renderCard(camp, prices); });
     cards.forEach(function (c) { grid.appendChild(c.node); });
     rank();
+
+    // Forget typed prices for shinies no longer in any pool.
+    var live = {};
+    cards.forEach(function (c) { if (c.shinyKey) live[c.shinyKey] = true; });
+    Object.keys(state.shinyPrices).forEach(function (k) { if (!live[k]) delete state.shinyPrices[k]; });
+    persist();
 
     var notes = $('ranking-notes');
     notes.textContent = '';
@@ -348,6 +465,18 @@
     var when = prices.updated_at ? ago(prices.updated_at) : '';
     notes.appendChild(document.createTextNode(when ? ', updated ' + when + '.' : '.'));
   }
+
+  var shinyToggle = $('include-shinies');
+  shinyToggle.checked = state.includeShinies;
+  shinyToggle.addEventListener('change', function () {
+    state.includeShinies = shinyToggle.checked;
+    persist();
+    cards.forEach(function (c) {
+      if (c.shinyPriceNode) c.shinyPriceNode.hidden = !state.includeShinies;
+      updateScore(c);
+    });
+    rank();
+  });
 
   function getJson(url) {
     return fetch(url, { cache: 'no-cache' }).then(function (res) {
