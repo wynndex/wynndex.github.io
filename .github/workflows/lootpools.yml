@@ -1,12 +1,15 @@
 name: Update loot pools
 
-# Lootrun pools reset every Friday at 1 PM New York time, which is 17:00 UTC
-# during daylight saving time and 18:00 UTC otherwise. Run several times after
-# both possible reset times in case the API still serves last week's pools,
-# plus a slow safety net. The script only commits when the pools change.
+# Lootrun pools reset every Friday at 2 PM New York time (19:00 UTC in winter,
+# 18:00 UTC during daylight saving time). GitHub often skips scheduled runs, so
+# several Friday runs start in the hours before the reset, and the script's
+# --wait mode keeps polling until the new pools appear. Only one of them has to
+# actually start; later ones see the pools are current and exit. The 6-hourly
+# run is a safety net for mid-week changes. The script only commits when the
+# pools change.
 on:
   schedule:
-    - cron: '5,20,45 17,18,19 * * 5'
+    - cron: '7,37 16,17,18,19 * * 5'
     - cron: '30 */6 * * *'
   workflow_dispatch:
 
@@ -20,11 +23,13 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    # --wait polls for up to ~4.5 hours.
+    timeout-minutes: 330
     steps:
       - uses: actions/checkout@v4
 
       - name: Fetch loot pools
-        run: python3 scripts/update_lootpools.py
+        run: python3 scripts/update_lootpools.py --wait
         env:
           # Optional: shiny trackers come from Wynnventory's pool data.
           WYNNVENTORY_API_KEY: ${{ secrets.WYNNVENTORY_API_KEY }}

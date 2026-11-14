@@ -149,7 +149,7 @@
   }
 
   // The pool week a timestamp falls in, named by the New York date of the
-  // reset that started it (pools reset Fridays 1 PM New York time).
+  // reset that started it (pools reset Fridays 2 PM New York time).
   function poolWeek(iso) {
     var t = new Date(iso);
     if (isNaN(t)) return '';
@@ -159,7 +159,7 @@
       month: '2-digit', day: '2-digit', hour: '2-digit', hourCycle: 'h23',
     }).formatToParts(t).forEach(function (part) { p[part.type] = part.value; });
     var back = (['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(p.weekday) + 2) % 7; // days since Friday
-    if (back === 0 && +p.hour < 13) back = 7;
+    if (back === 0 && +p.hour < 14) back = 7;
     return new Date(Date.UTC(+p.year, +p.month - 1, +p.day - back)).toISOString().slice(0, 10);
   }
 
@@ -298,6 +298,8 @@
         el('span', { className: 'pool-icon-art' }, [
           img,
           it.shiny ? el('img', { className: 'pool-icon-glint', alt: '', src: TEXTURE_DIR + 'shiny.png' }) : null,
+          // Minecraft-style stack count for repeated items.
+          it.slots > 1 ? el('span', { className: 'pool-icon-count', text: String(it.slots) }) : null,
         ]),
         el('span', { className: 'pool-tip' }, [
           el('span', { className: 'pool-tip-title' }, [
@@ -465,6 +467,51 @@
     var when = prices.updated_at ? ago(prices.updated_at) : '';
     notes.appendChild(document.createTextNode(when ? ', updated ' + when + '.' : '.'));
   }
+
+  // ---- Pool reset countdown --------------------------------------------------
+
+  // New York wall-clock parts of a moment.
+  function nyParts(t) {
+    var p = {};
+    new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York', weekday: 'short', year: 'numeric',
+      month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+      second: '2-digit', hourCycle: 'h23',
+    }).formatToParts(t).forEach(function (part) { p[part.type] = part.value; });
+    return p;
+  }
+
+  // The moment New York's clock reads the given date at 2 PM (handles DST:
+  // the UTC offset is taken at that moment, not now).
+  function nyTwoPm(y, m, d) {
+    var guess = Date.UTC(y, m - 1, d, 14);
+    for (var i = 0; i < 2; i++) {
+      var p = nyParts(new Date(guess));
+      var shown = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second);
+      guess += Date.UTC(y, m - 1, d, 14) - shown;
+    }
+    return guess;
+  }
+
+  // Next pool reset: Friday 2 PM New York time.
+  function nextReset(now) {
+    var p = nyParts(new Date(now));
+    var ahead = (5 - ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(p.weekday) + 7) % 7;
+    var t = nyTwoPm(+p.year, +p.month, +p.day + ahead);
+    if (t <= now) t = nyTwoPm(+p.year, +p.month, +p.day + ahead + 7);
+    return t;
+  }
+
+  function showReset() {
+    var now = Date.now();
+    var s = Math.max(0, Math.floor((nextReset(now) - now) / 1000));
+    $('pool-reset').hidden = s >= 86400; // only in the last 24 hours
+    var parts = [[Math.floor(s / 86400), 'd'], [Math.floor(s / 3600) % 24, 'h'], [Math.floor(s / 60) % 60, 'm'], [s % 60, 's']];
+    while (parts.length > 1 && !parts[0][0]) parts.shift();
+    $('pool-reset').textContent = 'Pool reset in: ' + parts.map(function (q) { return q[0] + q[1]; }).join(' ');
+  }
+  showReset();
+  setInterval(showReset, 1000);
 
   var shinyToggle = $('include-shinies');
   shinyToggle.checked = state.includeShinies;
