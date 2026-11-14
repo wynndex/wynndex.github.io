@@ -149,7 +149,7 @@
   }
 
   // The pool week a timestamp falls in, named by the New York date of the
-  // reset that started it (pools reset Fridays 1 PM New York time).
+  // reset that started it (pools reset Fridays 2 PM New York time).
   function poolWeek(iso) {
     var t = new Date(iso);
     if (isNaN(t)) return '';
@@ -159,7 +159,7 @@
       month: '2-digit', day: '2-digit', hour: '2-digit', hourCycle: 'h23',
     }).formatToParts(t).forEach(function (part) { p[part.type] = part.value; });
     var back = (['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(p.weekday) + 2) % 7; // days since Friday
-    if (back === 0 && +p.hour < 13) back = 7;
+    if (back === 0 && +p.hour < 14) back = 7;
     return new Date(Date.UTC(+p.year, +p.month - 1, +p.day - back)).toISOString().slice(0, 10);
   }
 

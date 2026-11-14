@@ -18,7 +18,12 @@ pool data, since the Wynncraft API doesn't say what a shiny tracks. This needs
 WYNNVENTORY_API_KEY; without it (or if Wynnventory fails) trackers from the
 previous file are kept for camps whose pools haven't changed.
 
-Usage: WYNNVENTORY_API_KEY=... python3 scripts/update_lootpools.py
+With --wait, a run started in the hours around Friday's reset keeps polling
+until the new pools appear (see wait_for_new_pools). GitHub often skips
+scheduled runs, so this way any one run that does start before the reset is
+enough.
+
+Usage: WYNNVENTORY_API_KEY=... python3 scripts/update_lootpools.py [--wait]
 """
 import json
 import os
@@ -85,13 +90,38 @@ def add_subtypes(camps, previous):
                 reward["subType"] = known[name]
 
 
-def last_reset(now=None):
-    """Most recent pool reset: Friday 1 PM New York time."""
-    ny = (now or datetime.now(timezone.utc)).astimezone(ZoneInfo("America/New_York"))
-    reset = ny.replace(hour=13, minute=0, second=0, microsecond=0) - timedelta(days=(ny.weekday() - 4) % 7)
+NY = ZoneInfo("America/New_York")
+RESET_HOUR = 14  # pools reset Fridays 2 PM New York time
+
+# --wait: poll from this long before the reset until this long after it.
+WAIT_BEFORE = timedelta(hours=3)
+WAIT_AFTER = timedelta(minutes=90)
+POLL_SECONDS = 60
+
+
+def reset_on_or_before(ny):
+    """The Friday reset on or before New York-local `ny` (no later than it)."""
+    day = ny - timedelta(days=(ny.weekday() - 4) % 7)
+    reset = datetime(day.year, day.month, day.day, RESET_HOUR, tzinfo=NY)
     if reset > ny:
-        reset -= timedelta(days=7)
-    return reset.astimezone(timezone.utc)
+        day -= timedelta(days=7)
+        reset = datetime(day.year, day.month, day.day, RESET_HOUR, tzinfo=NY)
+    return reset
+
+
+def last_reset(now=None):
+    """Most recent pool reset, in UTC."""
+    ny = (now or datetime.now(timezone.utc)).astimezone(NY)
+    return reset_on_or_before(ny).astimezone(timezone.utc)
+
+
+def nearest_reset(now):
+    """The pool reset closest to `now` (past or upcoming), in UTC."""
+    ny = now.astimezone(NY)
+    past = reset_on_or_before(ny)
+    nxt = reset_on_or_before(ny + timedelta(days=7))
+    best = min((past, nxt), key=lambda r: abs(r - ny))
+    return best.astimezone(timezone.utc)
 
 
 def parse_time(text):
@@ -183,7 +213,7 @@ def keep_shiny_trackers(camps, previous):
                 reward["shinyTracker"] = trackers[reward["name"]]
 
 
-def main():
+def fetch_camps():
     raw = fetch()
     camps = [
         {
@@ -196,11 +226,55 @@ def main():
     ]
     if not camps or not any(c["rewards"] for c in camps):
         raise SystemExit("API returned no camp rewards; not overwriting")
+    return camps
+
+
+def bare(camps):
+    """Camps without the fields this script adds, for comparing with the API."""
+    return [
+        {**c, "rewards": [{k: r[k] for k in REWARD_KEYS if k in r} for r in c.get("rewards", [])]}
+        for c in camps
+    ]
+
+
+def wait_for_new_pools(camps, previous):
+    """Near a reset whose pools we don't have yet, re-fetch every minute until
+    the API's pools differ from the previous file, or the window ends."""
+    now = datetime.now(timezone.utc)
+    reset = nearest_reset(now)
+    start, deadline = reset - WAIT_BEFORE, reset + WAIT_AFTER
+    if not start <= now < deadline:
+        return camps
+    # Treat a write shortly before the reset as this reset's pools too, in
+    # case they changed a little early.
+    written = parse_time(previous.get("updated_at"))
+    if written and written >= reset - timedelta(minutes=15):
+        print(f"Already have pools from the {reset:%Y-%m-%d %H:%M} UTC reset")
+        return camps
+    old = bare(previous.get("camps", []))
+    print(f"Waiting for the {reset:%Y-%m-%d %H:%M} UTC reset (until {deadline:%H:%M} UTC)")
+    while camps == old:
+        if datetime.now(timezone.utc) + timedelta(seconds=POLL_SECONDS) >= deadline:
+            print("Gave up waiting; pools still unchanged")
+            break
+        time.sleep(POLL_SECONDS)
+        try:
+            camps = fetch_camps()
+        except SystemExit as err:  # keep waiting through API hiccups
+            print(err, file=sys.stderr)
+    return camps
+
+
+def main():
+    camps = fetch_camps()
 
     try:
         previous = json.loads(OUT.read_text())
     except (OSError, ValueError):
         previous = {}
+
+    if "--wait" in sys.argv[1:]:
+        camps = wait_for_new_pools(camps, previous)
 
     add_subtypes(camps, previous)
     add_shiny_trackers(camps)
