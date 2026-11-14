@@ -1,5 +1,14 @@
 /* Camps page only; shared item-card styles are in shared/style.css. */
 
+/* "Pool reset in" (only shown in the last 24h) sits right under the price credit line. */
+#ranking-notes:has(+ #pool-reset:not([hidden])) {
+  margin-bottom: 0;
+}
+
+#pool-reset[hidden] {
+  display: none;
+}
+
 /* Camp score in the card's top-right corner (shared .item-price sits top-left). */
 .item-price.camp-score {
   left: auto;
@@ -60,6 +69,19 @@
   width: 14px;
   height: 22px;
   image-rendering: pixelated;
+}
+
+/* Stack count (repeated items) in the icon's bottom-right corner, like Minecraft. */
+.pool-icon-count {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  z-index: 1;
+  pointer-events: none;
+  font-size: 27px;
+  line-height: 0.8;
+  color: #ffffff;
+  text-shadow: 2px 2px 0 var(--shadow-dark);
 }
 
 .pool-icon-img {
