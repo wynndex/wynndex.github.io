@@ -1,58 +1,58 @@
 {
- "updated_at": "2026-11-14T18:25:45Z",
+ "updated_at": "2026-11-14T21:25:08Z",
  "source": "https://wynnventory.com/api/v2",
  "items": {
   "Aftershock": {
    "unidentified_lowest_price": 167731,
    "lowest_price": 43008,
    "unidentified_average_p50_ema_price": 266359.85,
-   "average_p50_ema_price": 330778.51,
+   "average_p50_ema_price": 350778.51,
    "unidentified_count": 15,
-   "total_count": 27
+   "total_count": 28
   },
   "Alkatraz": {
    "unidentified_lowest_price": 344064,
    "lowest_price": 163840,
    "unidentified_average_p50_ema_price": 531033.48,
-   "average_p50_ema_price": 379037.71,
+   "average_p50_ema_price": 378553.09,
    "unidentified_count": 14,
-   "total_count": 75
+   "total_count": 78
   },
   "Archangel": {
    "unidentified_lowest_price": 173250,
    "lowest_price": 154500,
-   "unidentified_average_p50_ema_price": 289731.41,
+   "unidentified_average_p50_ema_price": 291512.91,
    "average_p50_ema_price": 329261.21,
-   "unidentified_count": 20,
-   "total_count": 61
+   "unidentified_count": 21,
+   "total_count": 63
   },
   "Az": {
    "unidentified_lowest_price": 927000,
    "lowest_price": 215040,
    "unidentified_average_p50_ema_price": 736499.08,
-   "average_p50_ema_price": 754891.82,
+   "average_p50_ema_price": 721140.69,
    "unidentified_count": 3,
-   "total_count": 26
+   "total_count": 27
   },
   "Corkian Insulator": {
-   "lowest_price": 552959,
-   "average_p50_ema_price": 612009.45,
+   "lowest_price": 551050,
+   "average_p50_ema_price": 609480.07,
    "unidentified_count": 0,
-   "total_count": 178
+   "total_count": 191
   },
   "Corkian Simulator": {
    "lowest_price": 680421,
-   "average_p50_ema_price": 789923.75,
+   "average_p50_ema_price": 789085.5,
    "unidentified_count": 0,
-   "total_count": 147
+   "total_count": 156
   },
   "Divzer": {
    "unidentified_lowest_price": 695439,
    "lowest_price": 248913,
-   "unidentified_average_p50_ema_price": 949903.57,
+   "unidentified_average_p50_ema_price": 949519.57,
    "average_p50_ema_price": 868799.98,
-   "unidentified_count": 10,
-   "total_count": 96
+   "unidentified_count": 13,
+   "total_count": 102
   },
   "Epoch": {
    "unidentified_lowest_price": 945000,
@@ -60,23 +60,23 @@
    "unidentified_average_p50_ema_price": 912966.89,
    "average_p50_ema_price": 826375.72,
    "unidentified_count": 9,
-   "total_count": 94
+   "total_count": 97
   },
   "Eschaton": {
    "unidentified_lowest_price": 270008,
    "lowest_price": 43008,
    "unidentified_average_p50_ema_price": 435019.59,
-   "average_p50_ema_price": 388723.71,
+   "average_p50_ema_price": 385777.46,
    "unidentified_count": 11,
-   "total_count": 44
+   "total_count": 46
   },
   "Fantasia": {
    "unidentified_lowest_price": 715003,
-   "lowest_price": 131071,
-   "unidentified_average_p50_ema_price": 952737.95,
-   "average_p50_ema_price": 370590.44,
-   "unidentified_count": 13,
-   "total_count": 34
+   "lowest_price": 118128,
+   "unidentified_average_p50_ema_price": 952399.7,
+   "average_p50_ema_price": 355123.94,
+   "unidentified_count": 15,
+   "total_count": 40
   },
   "Gaia": {
    "unidentified_lowest_price": 258048,
@@ -90,47 +90,47 @@
    "lowest_price": 782336,
    "average_p50_ema_price": 827314.7,
    "unidentified_count": 0,
-   "total_count": 185
+   "total_count": 225
   },
   "Guardian": {
-   "unidentified_lowest_price": 1118208,
+   "unidentified_lowest_price": 1080033,
    "lowest_price": 550502,
-   "unidentified_average_p50_ema_price": 1218046.18,
+   "unidentified_average_p50_ema_price": 1217954.93,
    "average_p50_ema_price": 1345903.23,
-   "unidentified_count": 19,
-   "total_count": 78
+   "unidentified_count": 20,
+   "total_count": 85
   },
   "Halcyon": {
    "unidentified_lowest_price": 1493500,
    "lowest_price": 385024,
-   "unidentified_average_p50_ema_price": 1728665.3,
-   "average_p50_ema_price": 1770775.39,
-   "unidentified_count": 9,
-   "total_count": 100
+   "unidentified_average_p50_ema_price": 1755157.55,
+   "average_p50_ema_price": 1769427.64,
+   "unidentified_count": 11,
+   "total_count": 105
   },
   "Hero": {
-   "unidentified_lowest_price": 371315,
+   "unidentified_lowest_price": 339763,
    "lowest_price": 172032,
-   "unidentified_average_p50_ema_price": 722120.82,
+   "unidentified_average_p50_ema_price": 706094.7,
    "average_p50_ema_price": 412303.31,
-   "unidentified_count": 39,
-   "total_count": 103
+   "unidentified_count": 42,
+   "total_count": 108
   },
   "Idol": {
    "unidentified_lowest_price": 983040,
    "lowest_price": 524287,
    "unidentified_average_p50_ema_price": 1135303.11,
-   "average_p50_ema_price": 1454749.72,
+   "average_p50_ema_price": 1436727.22,
    "unidentified_count": 27,
-   "total_count": 170
+   "total_count": 182
   },
   "Ignis": {
-   "unidentified_lowest_price": 472514,
+   "unidentified_lowest_price": 412876,
    "lowest_price": 129024,
-   "unidentified_average_p50_ema_price": 445036.82,
-   "average_p50_ema_price": 504561.49,
-   "unidentified_count": 3,
-   "total_count": 51
+   "unidentified_average_p50_ema_price": 434900.82,
+   "average_p50_ema_price": 517463.86,
+   "unidentified_count": 10,
+   "total_count": 61
   },
   "Immolation": {
    "unidentified_lowest_price": 1290977,
@@ -141,12 +141,12 @@
    "total_count": 62
   },
   "Moontower": {
-   "unidentified_lowest_price": 115500,
+   "unidentified_lowest_price": 113971,
    "lowest_price": 50626,
    "unidentified_average_p50_ema_price": 140452.98,
-   "average_p50_ema_price": 164747.66,
-   "unidentified_count": 22,
-   "total_count": 98
+   "average_p50_ema_price": 164338.16,
+   "unidentified_count": 23,
+   "total_count": 100
   },
   "Nullification": {
    "unidentified_lowest_price": 290680,
@@ -157,24 +157,24 @@
    "total_count": 45
   },
   "Oblivion": {
-   "unidentified_lowest_price": 808550,
+   "unidentified_lowest_price": 729866,
    "lowest_price": 64512,
-   "unidentified_average_p50_ema_price": 1065831.48,
+   "unidentified_average_p50_ema_price": 1059851.36,
    "average_p50_ema_price": 327702.1,
-   "unidentified_count": 24,
-   "total_count": 90
+   "unidentified_count": 26,
+   "total_count": 92
   },
   "Orange Ward": {
    "lowest_price": 567000,
    "average_p50_ema_price": 685931.12,
    "unidentified_count": 0,
-   "total_count": 80
+   "total_count": 82
   },
   "Pink Ward": {
    "lowest_price": 1081500,
-   "average_p50_ema_price": 1285535.09,
+   "average_p50_ema_price": 1284270.59,
    "unidentified_count": 0,
-   "total_count": 120
+   "total_count": 123
   },
   "Restitution": {
    "unidentified_lowest_price": 270008,
@@ -187,18 +187,18 @@
   "Resurgence": {
    "unidentified_lowest_price": 99999,
    "lowest_price": 1,
-   "unidentified_average_p50_ema_price": 173099.17,
+   "unidentified_average_p50_ema_price": 170872.05,
    "average_p50_ema_price": 158196.53,
-   "unidentified_count": 43,
-   "total_count": 186
+   "unidentified_count": 44,
+   "total_count": 187
   },
   "Revenant": {
-   "unidentified_lowest_price": 257500,
+   "unidentified_lowest_price": 248913,
    "lowest_price": 90316,
-   "unidentified_average_p50_ema_price": 412756.79,
-   "average_p50_ema_price": 270598.09,
-   "unidentified_count": 18,
-   "total_count": 129
+   "unidentified_average_p50_ema_price": 411356.91,
+   "average_p50_ema_price": 268485.59,
+   "unidentified_count": 20,
+   "total_count": 149
   },
   "Riptide": {
    "unidentified_lowest_price": 655359,
@@ -206,15 +206,15 @@
    "unidentified_average_p50_ema_price": 721637.42,
    "average_p50_ema_price": 536402.26,
    "unidentified_count": 13,
-   "total_count": 107
+   "total_count": 112
   },
   "Singularity": {
-   "unidentified_lowest_price": 1122222,
+   "unidentified_lowest_price": 986740,
    "lowest_price": 643750,
-   "unidentified_average_p50_ema_price": 1238989.73,
-   "average_p50_ema_price": 1288429.21,
-   "unidentified_count": 11,
-   "total_count": 74
+   "unidentified_average_p50_ema_price": 1223301.98,
+   "average_p50_ema_price": 1254678.21,
+   "unidentified_count": 16,
+   "total_count": 89
   },
   "Slayer": {
    "unidentified_lowest_price": 126566,
@@ -222,31 +222,31 @@
    "unidentified_average_p50_ema_price": 236954.11,
    "average_p50_ema_price": 132772.08,
    "unidentified_count": 57,
-   "total_count": 130
+   "total_count": 132
   },
   "Spring": {
    "unidentified_lowest_price": 535500,
    "lowest_price": 323583,
-   "unidentified_average_p50_ema_price": 862809.14,
-   "average_p50_ema_price": 821763.77,
-   "unidentified_count": 12,
-   "total_count": 51
+   "unidentified_average_p50_ema_price": 855712.64,
+   "average_p50_ema_price": 824194.65,
+   "unidentified_count": 15,
+   "total_count": 55
   },
   "Sunstar": {
-   "unidentified_lowest_price": 550502,
+   "unidentified_lowest_price": 524287,
    "lowest_price": 172032,
    "unidentified_average_p50_ema_price": 748415.01,
    "average_p50_ema_price": 643767.46,
-   "unidentified_count": 13,
-   "total_count": 109
+   "unidentified_count": 14,
+   "total_count": 110
   },
   "Thrundacrack": {
    "unidentified_lowest_price": 542716,
    "lowest_price": 80158,
-   "unidentified_average_p50_ema_price": 827683.48,
+   "unidentified_average_p50_ema_price": 835180.98,
    "average_p50_ema_price": 630596.52,
-   "unidentified_count": 13,
-   "total_count": 112
+   "unidentified_count": 14,
+   "total_count": 115
   },
   "Toxoplasmosis": {
    "unidentified_lowest_price": 607518,
@@ -259,18 +259,10 @@
   "Transfiguration": {
    "unidentified_lowest_price": 293529,
    "lowest_price": 62995,
-   "unidentified_average_p50_ema_price": 369635.46,
+   "unidentified_average_p50_ema_price": 387284.09,
    "average_p50_ema_price": 480120.86,
-   "unidentified_count": 3,
-   "total_count": 51
-  },
-  "Warp": {
-   "unidentified_lowest_price": 2868838,
-   "lowest_price": 810024,
-   "unidentified_average_p50_ema_price": 2970091.0,
-   "average_p50_ema_price": 2160066,
-   "unidentified_count": 14,
-   "total_count": 161
+   "unidentified_count": 4,
+   "total_count": 52
   }
  }
 }
