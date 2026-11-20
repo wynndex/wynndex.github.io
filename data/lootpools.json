@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T19:15:01Z",
+ "updated_at": "2026-11-20T19:37:10Z",
  "source": "https://api.wynncraft.com/v3/map/loot-pools",
  "camps": [
   {
@@ -7,27 +7,32 @@
    "internalName": "SCotlCamp1",
    "rewards": [
     {
-     "name": "Revenant",
+     "name": "Divzer",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
      "shiny": true,
-     "subType": "boots",
+     "subType": "bow",
      "shinyTracker": "Wars Won"
     },
     {
-     "name": "Restitution",
+     "name": "Inferno",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
-     "subType": "spear"
+     "subType": "dagger"
     },
     {
-     "name": "Halcyon",
+     "name": "Transfiguration",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
-     "subType": "wand"
+     "subType": "relik"
+    },
+    {
+     "name": "CORKIAN INSULATOR",
+     "type": "ITEM",
+     "amount": 1
     },
     {
      "name": "CORKIAN SIMULATOR",
@@ -35,12 +40,34 @@
      "amount": 1
     },
     {
+     "name": "Green Ward",
+     "type": "WARD",
+     "amount": 1
+    },
+    {
+     "name": "Orange Ward",
+     "type": "WARD",
+     "amount": 1
+    },
+    {
      "name": "Liquified Emerald",
      "type": "CURRENCY",
-     "amount": 44
+     "amount": 25
+    },
+    {
+     "name": "Echoes of the Lost",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
     },
     {
      "name": "Vulcan",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Equites",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
@@ -52,25 +79,25 @@
      "tier": "FABLED"
     },
     {
-     "name": "Alkali",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
      "name": "Syndicate's Tome of Care I",
      "type": "TOME",
      "amount": 1,
      "tier": "FABLED"
     },
     {
-     "name": "Syndicate's Tome of Caution I",
+     "name": "Syndicate's Tome of Dividends I",
      "type": "TOME",
      "amount": 1,
      "tier": "FABLED"
     },
     {
-     "name": "Legion",
+     "name": "Pas De Deux",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Heatseeker",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
@@ -82,37 +109,43 @@
      "tier": "FABLED"
     },
     {
-     "name": "Time Rift",
+     "name": "Nighthawk",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
     },
     {
-     "name": "Axiom",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Kaze",
+     "name": "Conflagrate",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Dizzy Spell",
+     "name": "Zero",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Return to Ether",
+     "name": "Leo",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Dark Shroud",
+     "name": "Crater Print",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Synapse",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Zephra Shredder",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
@@ -120,32 +153,27 @@
     {
      "name": "Tol Rune",
      "type": "ITEM",
-     "amount": 4
+     "amount": 8
     },
     {
      "name": "Uth Rune",
      "type": "ITEM",
-     "amount": 11
+     "amount": 7
     },
     {
      "name": "Nii Rune",
      "type": "ITEM",
-     "amount": 22
+     "amount": 12
     },
     {
      "name": "Emerald Block",
      "type": "CURRENCY",
-     "amount": 44
+     "amount": 40
     },
     {
      "name": "\u00a74Broken Infested Pit Key",
      "type": "ITEM",
-     "amount": 2
-    },
-    {
-     "name": "\u00a74Broken Galleon's Graveyard Key",
-     "type": "ITEM",
-     "amount": 2
+     "amount": 5
     },
     {
      "name": "\u00a74Broken Underworld Crypt Key",
@@ -153,31 +181,30 @@
      "amount": 1
     },
     {
-     "name": "Doubt",
+     "name": "\u00a74Broken Ice Barrows Key",
+     "type": "ITEM",
+     "amount": 3
+    },
+    {
+     "name": "Rot of Dernel",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Shell of Genbu",
+     "name": "Bottled Sky",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Sigil of Existence",
+     "name": "Desperado",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Coiled Briar",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Crwth",
+     "name": "Mesosphere",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
@@ -189,43 +216,43 @@
      "tier": "RARE"
     },
     {
-     "name": "Storm Surge",
+     "name": "Sigil of Assistance",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Deux",
+     "name": "Tephra",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Crown of Suzaku",
+     "name": "Morph-Amethyst",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "The Courier's Cape",
+     "name": "Veins",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Lichenwal",
+     "name": "Disintegrator",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Magmarizer",
+     "name": "Fishscale",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Cracklers",
+     "name": "Belcon",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
@@ -237,41 +264,34 @@
    "internalName": "CorkusCamp1",
    "rewards": [
     {
-     "name": "Apocalypse",
+     "name": "Sunstar",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
      "shiny": true,
-     "subType": "spear",
-     "shinyTracker": "Chests Opened"
+     "subType": "relik",
+     "shinyTracker": "Deaths"
     },
     {
-     "name": "Thrundacrack",
+     "name": "Pure",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
-     "subType": "spear"
+     "subType": "wand"
     },
     {
-     "name": "Oblivion",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "dagger"
-    },
-    {
-     "name": "Slayer",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "boots"
-    },
-    {
-     "name": "Epoch",
+     "name": "Grandmother",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
      "subType": "bow"
+    },
+    {
+     "name": "Galleon",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "boots"
     },
     {
      "name": "CORKIAN INSULATOR",
@@ -279,12 +299,7 @@
      "amount": 1
     },
     {
-     "name": "CORKIAN SIMULATOR",
-     "type": "ITEM",
-     "amount": 2
-    },
-    {
-     "name": "Pink Ward",
+     "name": "Green Ward",
      "type": "WARD",
      "amount": 1
     },
@@ -294,13 +309,7 @@
      "amount": 20
     },
     {
-     "name": "Apex",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Anti-Causality",
+     "name": "Tachyon",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
@@ -312,25 +321,25 @@
      "tier": "FABLED"
     },
     {
-     "name": "Gnossis",
+     "name": "Keeper of Souls",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
     },
     {
-     "name": "Lazuli",
+     "name": "Apex",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Valence",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
      "name": "Cinnamon",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Fluffwind",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
@@ -354,22 +363,46 @@
      "tier": "FABLED"
     },
     {
-     "name": "Dance Among the Stars",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Axiom",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
      "name": "Time Rift",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
+    },
+    {
+     "name": "Pas De Deux",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Iosis",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Heatseeker",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Charm of the Tides",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Phoenix Wing",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Zephra Shredder",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
     },
     {
      "name": "Crimson",
@@ -378,25 +411,7 @@
      "tier": "LEGENDARY"
     },
     {
-     "name": "Ventus Tail",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Island Chain",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Alka Cometflinger",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Asphyxia",
+     "name": "Dizzy Spell",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
@@ -404,30 +419,47 @@
     {
      "name": "Uth Rune",
      "type": "ITEM",
-     "amount": 15
+     "amount": 7
     },
     {
      "name": "Nii Rune",
      "type": "ITEM",
-     "amount": 4
+     "amount": 22
     },
     {
      "name": "Emerald Block",
      "type": "CURRENCY",
-     "amount": 48
+     "amount": 8
     },
     {
-     "name": "\u00a74Broken Lost Sanctuary Key",
+     "name": "\u00a74Broken Undergrowth Ruins Key",
      "type": "ITEM",
-     "amount": 4
+     "amount": 3
     },
     {
-     "name": "\u00a74Broken Underworld Crypt Key",
+     "name": "\u00a74Broken Galleon's Graveyard Key",
      "type": "ITEM",
-     "amount": 1
+     "amount": 2
     },
     {
-     "name": "Sreggad",
+     "name": "\u00a74Broken Decrepit Sewers Key",
+     "type": "ITEM",
+     "amount": 2
+    },
+    {
+     "name": "Tsunasweep",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Nezha",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Archaic",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
@@ -439,43 +471,31 @@
      "tier": "RARE"
     },
     {
-     "name": "Riverflow",
+     "name": "Veantur",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Statue",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Nuance",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "September",
+     "name": "Cotton Swab",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Nightlife",
+     "name": "Neuron",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Esclavage",
+     "name": "Kayde",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Dhoruba",
+     "name": "Molten Flow",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
@@ -487,41 +507,48 @@
    "internalName": "MHCamp1",
    "rewards": [
     {
-     "name": "Lament",
+     "name": "Archangel",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
      "shiny": true,
-     "subType": "wand",
+     "subType": "dagger",
      "shinyTracker": "Major World Events Won"
     },
     {
-     "name": "Revenant",
+     "name": "Moontower",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
      "subType": "boots"
     },
     {
-     "name": "Spring",
+     "name": "Epoch",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
      "subType": "bow"
     },
     {
-     "name": "Sunstar",
+     "name": "Guardian",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "spear"
+    },
+    {
+     "name": "Immolation",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
      "subType": "relik"
     },
     {
-     "name": "Ignis",
+     "name": "Dawnbreak",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
-     "subType": "bow"
+     "subType": "boots"
     },
     {
      "name": "CORKIAN INSULATOR",
@@ -531,7 +558,7 @@
     {
      "name": "CORKIAN SIMULATOR",
      "type": "ITEM",
-     "amount": 2
+     "amount": 1
     },
     {
      "name": "Pink Ward",
@@ -546,7 +573,7 @@
     {
      "name": "Liquified Emerald",
      "type": "CURRENCY",
-     "amount": 36
+     "amount": 44
     },
     {
      "name": "Pain Cycle",
@@ -555,261 +582,7 @@
      "tier": "FABLED"
     },
     {
-     "name": "Bloodborne",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Syndicate's Tome of Dividends I",
-     "type": "TOME",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Syndicate's Tome of Hospitality I",
-     "type": "TOME",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Melancholia",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Possession",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Heatseeker",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Trikaya",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Ignition",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Spiritdancer",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Dizzy Spell",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Faustian Contract",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Necrosis",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Tol Rune",
-     "type": "ITEM",
-     "amount": 2
-    },
-    {
-     "name": "Uth Rune",
-     "type": "ITEM",
-     "amount": 5
-    },
-    {
-     "name": "Nii Rune",
-     "type": "ITEM",
-     "amount": 14
-    },
-    {
-     "name": "Emerald Block",
-     "type": "CURRENCY",
-     "amount": 34
-    },
-    {
-     "name": "\u00a74Broken Infested Pit Key",
-     "type": "ITEM",
-     "amount": 3
-    },
-    {
-     "name": "\u00a74Broken Ice Barrows Key",
-     "type": "ITEM",
-     "amount": 3
-    },
-    {
-     "name": "\u00a74Broken Lost Sanctuary Key",
-     "type": "ITEM",
-     "amount": 2
-    },
-    {
-     "name": "\u00a74Broken Sand-Swept Tomb Key",
-     "type": "ITEM",
-     "amount": 2
-    },
-    {
-     "name": "Impulse Effigy",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Timthriall",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Hard Light",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Vacarme",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Cloud Nine",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Pro Tempore",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Belligerence",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Tungsten Carcass",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Calming Torc",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Steel Wool",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Ashstorm",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Happenstance",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    }
-   ]
-  },
-  {
-   "name": "Sky Islands Exploration",
-   "internalName": "SKYCamp1",
-   "rewards": [
-    {
-     "name": "Crusade Sabatons",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "shiny": true,
-     "subType": "boots",
-     "shinyTracker": "Chests Opened"
-    },
-    {
-     "name": "Guardian",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "spear"
-    },
-    {
-     "name": "Divzer",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "bow"
-    },
-    {
-     "name": "Gaia",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "wand"
-    },
-    {
-     "name": "Toxoplasmosis",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "relik"
-    },
-    {
-     "name": "CORKIAN INSULATOR",
-     "type": "ITEM",
-     "amount": 2
-    },
-    {
-     "name": "Orange Ward",
-     "type": "WARD",
-     "amount": 2
-    },
-    {
-     "name": "Liquified Emerald",
-     "type": "CURRENCY",
-     "amount": 34
-    },
-    {
-     "name": "Propeller Hat",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Psionic Pretense",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Syndicate's Tome of Safety I",
+     "name": "Syndicate's Tome of Caution I",
      "type": "TOME",
      "amount": 1,
      "tier": "FABLED"
@@ -821,288 +594,13 @@
      "tier": "FABLED"
     },
     {
-     "name": "Rhythm of the Seasons",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Possession",
+     "name": "Trikaya",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
     },
     {
      "name": "Legion",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Renegade",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Petulance",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Lost Seconds",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Gravity",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Tol Rune",
-     "type": "ITEM",
-     "amount": 3
-    },
-    {
-     "name": "Uth Rune",
-     "type": "ITEM",
-     "amount": 5
-    },
-    {
-     "name": "Nii Rune",
-     "type": "ITEM",
-     "amount": 16
-    },
-    {
-     "name": "Emerald Block",
-     "type": "CURRENCY",
-     "amount": 34
-    },
-    {
-     "name": "\u00a74Broken Lost Sanctuary Key",
-     "type": "ITEM",
-     "amount": 4
-    },
-    {
-     "name": "\u00a74Broken Ice Barrows Key",
-     "type": "ITEM",
-     "amount": 2
-    },
-    {
-     "name": "\u00a74Broken Decrepit Sewers Key",
-     "type": "ITEM",
-     "amount": 3
-    },
-    {
-     "name": "\u00a74Broken Underworld Crypt Key",
-     "type": "ITEM",
-     "amount": 1
-    },
-    {
-     "name": "Coiled Briar",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Impulse Effigy",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Shajaea",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Supernova",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Ophiolite",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Bone-Dry Breastplate",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Updraft",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Reminder",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Scar of Darkness",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Deserter",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Burnheart",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Distorted Copse",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Missile",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    }
-   ]
-  },
-  {
-   "name": "Silent Expanse Expedition",
-   "internalName": "SICamp1",
-   "rewards": [
-    {
-     "name": "Ignis",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "shiny": true,
-     "subType": "bow",
-     "shinyTracker": "Chests Opened"
-    },
-    {
-     "name": "Singularity",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "wand"
-    },
-    {
-     "name": "Alkatraz",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "spear"
-    },
-    {
-     "name": "Nullification",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "dagger"
-    },
-    {
-     "name": "Aftershock",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "relik"
-    },
-    {
-     "name": "Eschaton",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "bow"
-    },
-    {
-     "name": "Idol",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "spear"
-    },
-    {
-     "name": "Green Ward",
-     "type": "WARD",
-     "amount": 1
-    },
-    {
-     "name": "Liquified Emerald",
-     "type": "CURRENCY",
-     "amount": 41
-    },
-    {
-     "name": "Empyreal Emberplate",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Third Wish",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Briars' Embrace",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Cytotoxic Striders",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Gravitron",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "LEGENDARY"
-    },
-    {
-     "name": "Syndicate's Tome of Dividends I",
-     "type": "TOME",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Syndicate's Tome of Caution I",
-     "type": "TOME",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Time Rift",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Steadfast",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Siege Vent",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
@@ -1120,19 +618,25 @@
      "tier": "LEGENDARY"
     },
     {
-     "name": "Perfidy",
+     "name": "Ivory",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Fidelius",
+     "name": "Thought Energy",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Inexorable",
+     "name": "Phoenix Wing",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Bedruthan",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
@@ -1140,91 +644,610 @@
     {
      "name": "Tol Rune",
      "type": "ITEM",
-     "amount": 5
+     "amount": 1
     },
     {
      "name": "Uth Rune",
      "type": "ITEM",
-     "amount": 15
+     "amount": 11
+    },
+    {
+     "name": "Nii Rune",
+     "type": "ITEM",
+     "amount": 4
     },
     {
      "name": "Emerald Block",
      "type": "CURRENCY",
-     "amount": 50
+     "amount": 24
+    },
+    {
+     "name": "\u00a74Broken Infested Pit Key",
+     "type": "ITEM",
+     "amount": 3
+    },
+    {
+     "name": "\u00a74Broken Lost Sanctuary Key",
+     "type": "ITEM",
+     "amount": 4
     },
     {
      "name": "\u00a74Broken Decrepit Sewers Key",
      "type": "ITEM",
+     "amount": 4
+    },
+    {
+     "name": "Impulse Effigy",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Overgrown",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Cadence",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Derecho",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Petrified Horror",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Different Times",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Resolve",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Flabbergast",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Spear of Sin",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Violent Spark",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Crown of Suzaku",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    }
+   ]
+  },
+  {
+   "name": "Sky Islands Exploration",
+   "internalName": "SKYCamp1",
+   "rewards": [
+    {
+     "name": "Restitution",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "shiny": true,
+     "subType": "spear",
+     "shinyTracker": "Guild Raids Won"
+    },
+    {
+     "name": "Epoch",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "bow"
+    },
+    {
+     "name": "Restitution",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "spear"
+    },
+    {
+     "name": "Weathered",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "dagger"
+    },
+    {
+     "name": "Revolution",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "bow"
+    },
+    {
+     "name": "CORKIAN INSULATOR",
+     "type": "ITEM",
+     "amount": 1
+    },
+    {
+     "name": "CORKIAN SIMULATOR",
+     "type": "ITEM",
+     "amount": 1
+    },
+    {
+     "name": "Orange Ward",
+     "type": "WARD",
+     "amount": 2
+    },
+    {
+     "name": "Liquified Emerald",
+     "type": "CURRENCY",
+     "amount": 40
+    },
+    {
+     "name": "Contrail Shock",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Psionic Pretense",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Syndicate's Tome of Hospitality I",
+     "type": "TOME",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Syndicate's Tome of Dividends I",
+     "type": "TOME",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Dance Among the Stars",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Narcissist",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Rhythm of the Seasons",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Nighthawk",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Rekkr",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Zephra Shredder",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Virgo",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Leo",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Tol Rune",
+     "type": "ITEM",
+     "amount": 3
+    },
+    {
+     "name": "Uth Rune",
+     "type": "ITEM",
+     "amount": 5
+    },
+    {
+     "name": "Nii Rune",
+     "type": "ITEM",
+     "amount": 6
+    },
+    {
+     "name": "Emerald Block",
+     "type": "CURRENCY",
+     "amount": 58
+    },
+    {
+     "name": "\u00a74Broken Decrepit Sewers Key",
+     "type": "ITEM",
+     "amount": 2
+    },
+    {
+     "name": "\u00a74Broken Lost Sanctuary Key",
+     "type": "ITEM",
+     "amount": 1
+    },
+    {
+     "name": "\u00a74Broken Galleon's Graveyard Key",
+     "type": "ITEM",
+     "amount": 3
+    },
+    {
+     "name": "Achromatic Gloom",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Cumulonimbus",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Limbo",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Doom-laden Horologe",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "King of Hearts",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Justice",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Runic Coin",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Hell's Scream",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Aplomb",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Limaciform",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Viviblaze",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Concussion",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    }
+   ]
+  },
+  {
+   "name": "Silent Expanse Expedition",
+   "internalName": "SICamp1",
+   "rewards": [
+    {
+     "name": "Aftershock",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "shiny": true,
+     "subType": "relik",
+     "shinyTracker": "Chests Opened"
+    },
+    {
+     "name": "Nullification",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "dagger"
+    },
+    {
+     "name": "Freedom",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "bow"
+    },
+    {
+     "name": "Convergence",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "spear"
+    },
+    {
+     "name": "Thrundacrack",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "spear"
+    },
+    {
+     "name": "Epoch",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "bow"
+    },
+    {
+     "name": "CORKIAN INSULATOR",
+     "type": "ITEM",
+     "amount": 2
+    },
+    {
+     "name": "CORKIAN SIMULATOR",
+     "type": "ITEM",
+     "amount": 2
+    },
+    {
+     "name": "Green Ward",
+     "type": "WARD",
+     "amount": 2
+    },
+    {
+     "name": "Liquified Emerald",
+     "type": "CURRENCY",
+     "amount": 44
+    },
+    {
+     "name": "Cytotoxic Striders",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Empyreal Emberplate",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Marionette",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Veritas",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Gravitron",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Syndicate's Tome of Care I",
+     "type": "TOME",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Syndicate's Tome of Hospitality I",
+     "type": "TOME",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Heart of the Forest",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Nighthawk",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Accelerando",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Steadfast",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Nether's Scar",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Mana Polarizer",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Downfall",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Ex Nihilo",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Tol Rune",
+     "type": "ITEM",
      "amount": 7
     },
     {
-     "name": "Diagenesis",
+     "name": "Uth Rune",
+     "type": "ITEM",
+     "amount": 11
+    },
+    {
+     "name": "Emerald Block",
+     "type": "CURRENCY",
+     "amount": 36
+    },
+    {
+     "name": "\u00a74Broken Galleon's Graveyard Key",
+     "type": "ITEM",
+     "amount": 2
+    },
+    {
+     "name": "\u00a74Broken Lost Sanctuary Key",
+     "type": "ITEM",
+     "amount": 5
+    },
+    {
+     "name": "\u00a74Broken Ice Barrows Key",
+     "type": "ITEM",
+     "amount": 2
+    },
+    {
+     "name": "Hazard",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "The Specialist",
+     "name": "Leadlights",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Ace of Spades",
+     "name": "Shellcarve",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Postulate",
+     "name": "Usufruct",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Supercharge",
+     "name": "Dionaea",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Yol",
+     "name": "Eutrophication",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Luminiferous Aether",
+     "name": "Razor Leaf",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Burnheart",
+     "name": "Dissonance",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Polyphemus",
+     "name": "Holy Bulwark",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Bergschrund",
+     "name": "Thermodynamic",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Vacuum",
+     "name": "Bastille",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Sinistra Lance",
+     "name": "Empty Heart",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "UNIQUE"
+    },
+    {
+     "name": "Subterrestrial",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
@@ -1236,20 +1259,20 @@
    "internalName": "WFrumaCamp1",
    "rewards": [
     {
-     "name": "Archangel",
+     "name": "Sunstar",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
      "shiny": true,
-     "subType": "dagger",
-     "shinyTracker": "Dungeons Won"
+     "subType": "relik",
+     "shinyTracker": "Raids Won"
     },
     {
-     "name": "Fantasia",
+     "name": "Stardew",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
-     "subType": "relik"
+     "subType": "boots"
     },
     {
      "name": "Transfiguration",
@@ -1259,13 +1282,6 @@
      "subType": "relik"
     },
     {
-     "name": "Archangel",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "dagger"
-    },
-    {
      "name": "Divzer",
      "type": "ITEM",
      "amount": 1,
@@ -1273,25 +1289,25 @@
      "subType": "bow"
     },
     {
-     "name": "Az",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "bow"
-    },
-    {
-     "name": "Riptide",
+     "name": "Lament",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
      "subType": "wand"
     },
     {
-     "name": "Thrundacrack",
+     "name": "Vengeance",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
-     "subType": "spear"
+     "subType": "dagger"
+    },
+    {
+     "name": "Fatal",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "wand"
     },
     {
      "name": "Toxoplasmosis",
@@ -1306,9 +1322,24 @@
      "amount": 2
     },
     {
+     "name": "CORKIAN SIMULATOR",
+     "type": "ITEM",
+     "amount": 1
+    },
+    {
+     "name": "Orange Ward",
+     "type": "WARD",
+     "amount": 2
+    },
+    {
+     "name": "Pink Ward",
+     "type": "WARD",
+     "amount": 1
+    },
+    {
      "name": "Liquified Emerald",
      "type": "CURRENCY",
-     "amount": 43
+     "amount": 33
     },
     {
      "name": "Dissenter's Refuge",
@@ -1329,13 +1360,7 @@
      "tier": "FABLED"
     },
     {
-     "name": "Inhumanity",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Ego",
+     "name": "Scattered Psyche",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
@@ -1347,37 +1372,49 @@
      "tier": "FABLED"
     },
     {
-     "name": "Song of the Sea",
+     "name": "The Peak",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Tectonics",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Hypoxia",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Planet Healer",
+     "name": "Mana Polarizer",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Astral Grief",
+     "name": "Fragile Truce",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Idealogue",
+     "name": "Lachesis",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Brilliant Waves",
+     "name": "Allegiance",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Valediction",
+     "name": "Sonic Wave",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
@@ -1385,112 +1422,117 @@
     {
      "name": "Ek Rune",
      "type": "ITEM",
-     "amount": 1
+     "amount": 3
     },
     {
      "name": "Tol Rune",
      "type": "ITEM",
-     "amount": 3
+     "amount": 2
     },
     {
      "name": "Uth Rune",
      "type": "ITEM",
-     "amount": 7
+     "amount": 11
     },
     {
      "name": "Nii Rune",
      "type": "ITEM",
-     "amount": 10
+     "amount": 6
     },
     {
      "name": "Emerald Block",
      "type": "CURRENCY",
-     "amount": 26
+     "amount": 34
     },
     {
      "name": "\u00a74Broken Lost Sanctuary Key",
      "type": "ITEM",
-     "amount": 4
-    },
-    {
-     "name": "\u00a74Broken Infested Pit Key",
-     "type": "ITEM",
      "amount": 2
     },
     {
-     "name": "Shadow Mender",
+     "name": "\u00a74Broken Decrepit Sewers Key",
+     "type": "ITEM",
+     "amount": 6
+    },
+    {
+     "name": "\u00a74Broken Sand-Swept Tomb Key",
+     "type": "ITEM",
+     "amount": 4
+    },
+    {
+     "name": "Risk-Averse",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Menara",
+     "name": "Gift",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Sacred Melody",
+     "name": "Expertise",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Ravaged Nature",
+     "name": "Solidarity Antique",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Witherleaf",
+     "name": "Revision",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Stalwart Peacekeeper",
+     "name": "Cogscrap Staff",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Taxonomy",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "RARE"
+    },
+    {
+     "name": "Microbial",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Violent Spark",
+     "name": "Runoff",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Recalculator",
+     "name": "Oplescobb",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Assimilation",
+     "name": "Stark Phantom",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Magistrate",
+     "name": "Smoke Signal",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Lightning Focus",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Flamemender",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Theory",
+     "name": "Photon Projector",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
@@ -1502,27 +1544,13 @@
    "internalName": "EFrumaCamp1",
    "rewards": [
     {
-     "name": "Epoch",
+     "name": "Alkatraz",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
      "shiny": true,
-     "subType": "bow",
-     "shinyTracker": "Chests Opened"
-    },
-    {
-     "name": "Immolation",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "relik"
-    },
-    {
-     "name": "Moontower",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "MYTHIC",
-     "subType": "boots"
+     "subType": "spear",
+     "shinyTracker": "Players Killed"
     },
     {
      "name": "Warp",
@@ -1532,32 +1560,46 @@
      "subType": "wand"
     },
     {
-     "name": "Fantasia",
+     "name": "Weathered",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
-     "subType": "relik"
+     "subType": "dagger"
     },
     {
-     "name": "Hero",
+     "name": "Revolution",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "bow"
+    },
+    {
+     "name": "Thrundacrack",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
      "subType": "spear"
     },
     {
-     "name": "Resurgence",
+     "name": "Collapse",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
-     "subType": "boots"
+     "subType": "spear"
     },
     {
-     "name": "Divzer",
+     "name": "Aftershock",
      "type": "ITEM",
      "amount": 1,
      "tier": "MYTHIC",
-     "subType": "bow"
+     "subType": "relik"
+    },
+    {
+     "name": "Ascendancy",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "MYTHIC",
+     "subType": "spear"
     },
     {
      "name": "CORKIAN INSULATOR",
@@ -1575,12 +1617,23 @@
      "amount": 1
     },
     {
+     "name": "Green Ward",
+     "type": "WARD",
+     "amount": 1
+    },
+    {
      "name": "Liquified Emerald",
      "type": "CURRENCY",
-     "amount": 29
+     "amount": 40
     },
     {
      "name": "Firebomb",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "FABLED"
+    },
+    {
+     "name": "Dawn Chaser",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
@@ -1592,61 +1645,61 @@
      "tier": "FABLED"
     },
     {
-     "name": "Syndicate's Tome of Caution I",
+     "name": "Syndicate's Tome of Dividends I",
      "type": "TOME",
      "amount": 1,
      "tier": "FABLED"
     },
     {
-     "name": "Baleful Blizzard",
+     "name": "Starcaller",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
     },
     {
-     "name": "Chaos Theory",
+     "name": "Autopilot",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
     },
     {
-     "name": "Heart of Shadow",
+     "name": "Demonomicon",
      "type": "ITEM",
      "amount": 1,
      "tier": "FABLED"
     },
     {
-     "name": "Roaring Thunder",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "FABLED"
-    },
-    {
-     "name": "Fragile Truce",
+     "name": "Abhorrence",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Sacrilege",
+     "name": "Inordinate",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Brutality",
+     "name": "Shogun",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Protoplasm",
+     "name": "Nihil",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
     },
     {
-     "name": "Thought Energy",
+     "name": "Lunar Acropolis",
+     "type": "ITEM",
+     "amount": 1,
+     "tier": "LEGENDARY"
+    },
+    {
+     "name": "Pisces",
      "type": "ITEM",
      "amount": 1,
      "tier": "LEGENDARY"
@@ -1654,123 +1707,111 @@
     {
      "name": "Ek Rune",
      "type": "ITEM",
-     "amount": 1
+     "amount": 2
     },
     {
      "name": "Tol Rune",
      "type": "ITEM",
-     "amount": 3
+     "amount": 2
     },
     {
      "name": "Uth Rune",
      "type": "ITEM",
-     "amount": 6
+     "amount": 8
     },
     {
      "name": "Nii Rune",
      "type": "ITEM",
-     "amount": 6
+     "amount": 8
     },
     {
      "name": "Emerald Block",
      "type": "CURRENCY",
-     "amount": 50
+     "amount": 14
     },
     {
      "name": "\u00a74Broken Infested Pit Key",
      "type": "ITEM",
-     "amount": 2
+     "amount": 3
+    },
+    {
+     "name": "\u00a74Broken Underworld Crypt Key",
+     "type": "ITEM",
+     "amount": 5
     },
     {
      "name": "\u00a74Broken Decrepit Sewers Key",
      "type": "ITEM",
-     "amount": 7
+     "amount": 4
     },
     {
-     "name": "\u00a74Broken Ice Barrows Key",
-     "type": "ITEM",
-     "amount": 2
-    },
-    {
-     "name": "Ad Terram",
+     "name": "Cattle Prod",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Mistmonger",
+     "name": "Arsonist",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Bull Charge",
+     "name": "Apath",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Withdrawal",
+     "name": "Disaster",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Stagnant Breath",
+     "name": "Supersear",
      "type": "ITEM",
      "amount": 1,
      "tier": "RARE"
     },
     {
-     "name": "Ad Ignem",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "RARE"
-    },
-    {
-     "name": "Ambition",
+     "name": "Windthrow",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Peculiar Branch",
+     "name": "Patchwork",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Shun the Flesh",
+     "name": "Telo Pona",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Worthless Heirloom",
+     "name": "The Mountaineer",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Tides of Mist",
+     "name": "Spirit Sceptre",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Electropuppeteer",
+     "name": "Carboniferous",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
     },
     {
-     "name": "Enchanted Winds",
-     "type": "ITEM",
-     "amount": 1,
-     "tier": "UNIQUE"
-    },
-    {
-     "name": "Heartburn",
+     "name": "Thunder's Whistle",
      "type": "ITEM",
      "amount": 1,
      "tier": "UNIQUE"
