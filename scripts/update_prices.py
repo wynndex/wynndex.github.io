@@ -9,8 +9,15 @@ never written anywhere. Requests are spaced one second apart.
 
 Items are the mythics, augments and wards in data/lootpools.json, keyed by the
 same display name the page uses. Shinies are skipped (their prices are always
-typed by hand). If an item's request fails, its previous entry is kept. The file
-is only rewritten when the prices change.
+typed by hand).
+
+Wynnventory often leaves out prices arbitrarily (no data for an item, or only
+some of its price fields). So every price field ever seen is kept in
+`last_seen` (per item, also for items no longer in the pools, since pools
+rotate), and a field missing from the current result is backfilled from it.
+Backfilled fields are listed in the item's `stale` map with the time that value
+was recorded. Listing counts are never backfilled. A failed request is treated
+like an empty result. The file is only rewritten when the prices change.
 
 Usage: WYNNVENTORY_API_KEY=... python3 scripts/update_prices.py
 """
@@ -42,6 +49,8 @@ STAT_KEYS = (
     "unidentified_count",
     "total_count",
 )
+# Price fields that fall back to their last-seen value when missing.
+PRICE_KEYS = STAT_KEYS[:4]
 
 
 def display_name(name):
@@ -80,6 +89,31 @@ def fetch_price(name, key):
     return {k: data[k] for k in STAT_KEYS if data.get(k) is not None}
 
 
+def now_iso():
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def merge(name, stats, last_seen, now):
+    """Records the fresh price fields in last_seen and fills missing ones from it."""
+    seen = last_seen.setdefault(name, {})
+    item = dict(stats or {})
+    stale = {}
+    for k in PRICE_KEYS:
+        if k in item:
+            # Keep the original timestamp while the value is unchanged, so an
+            # unchanged price doesn't rewrite (and commit) the file every hour.
+            if seen.get(k, {}).get("value") != item[k]:
+                seen[k] = {"value": item[k], "at": now}
+        elif k in seen:
+            item[k] = seen[k]["value"]
+            stale[k] = seen[k]["at"]
+    if not seen:
+        del last_seen[name]
+    if stale:
+        item["stale"] = stale
+    return item if any(k in item for k in PRICE_KEYS) else None
+
+
 def main():
     key = os.environ.get("WYNNVENTORY_API_KEY", "").strip()
     if not key:
@@ -93,8 +127,18 @@ def main():
         previous = json.loads(OUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    old_items = previous.get("items", {})
+    last_seen = previous.get("last_seen")
+    if last_seen is None:
+        # First run with last_seen: seed it from the previous snapshot's fresh fields.
+        last_seen = {}
+        at = previous.get("updated_at") or now_iso()
+        for name, stats in previous.get("items", {}).items():
+            stale = stats.get("stale", {})
+            fields = {k: {"value": stats[k], "at": stale.get(k, at)} for k in PRICE_KEYS if k in stats}
+            if fields:
+                last_seen[name] = fields
 
+    now = now_iso()
     items = {}
     failed = 0
     for i, name in enumerate(names):
@@ -105,28 +149,36 @@ def main():
         except urllib.error.HTTPError as err:
             if err.code in (401, 403):
                 raise SystemExit(f"Wynnventory refused the key (HTTP {err.code}); needs the read:market scope")
-            print(f"{name}: HTTP {err.code}, keeping previous price", file=sys.stderr)
+            print(f"{name}: HTTP {err.code}, using last-seen prices", file=sys.stderr)
             failed += 1
-            stats = old_items.get(name)
-        except Exception as err:  # noqa: BLE001 - network hiccup: keep the old value
-            print(f"{name}: {err}, keeping previous price", file=sys.stderr)
+            stats = None
+        except Exception as err:  # noqa: BLE001 - network hiccup: fall back to last-seen
+            print(f"{name}: {err}, using last-seen prices", file=sys.stderr)
             failed += 1
-            stats = old_items.get(name)
-        if stats:
-            items[name] = stats
-        print(f"{name}: {'ok' if stats else 'no data'}")
+            stats = None
+        item = merge(name, stats, last_seen, now)
+        if item:
+            items[name] = item
+        if not item:
+            status = "no data"
+        elif "stale" in item:
+            status = "last-seen " + ", ".join(sorted(item["stale"]))
+        else:
+            status = "ok"
+        print(f"{name}: {status}")
 
     if failed == len(names):
         raise SystemExit("Every request failed; not overwriting")
 
-    if previous.get("items") == items:
+    if previous.get("items") == items and previous.get("last_seen") == last_seen:
         print("Prices unchanged")
         return
 
     OUT.write_text(json.dumps({
-        "updated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "updated_at": now,
         "source": API_BASE,
         "items": items,
+        "last_seen": dict(sorted(last_seen.items())),
     }, indent=1, sort_keys=False) + "\n")
     print(f"Wrote {len(items)} prices to {OUT}")
 
