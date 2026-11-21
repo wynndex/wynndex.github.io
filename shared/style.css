@@ -451,6 +451,16 @@ label.checkbox {
   }
 }
 
+/* Backfilled from a last-seen price because the market had no current one. */
+.item-price.stale {
+  font-style: italic;
+  cursor: help;
+
+  &::after {
+    content: '*';
+  }
+}
+
 .item-price.invalid {
   color: #ff6b6b !important;
 }

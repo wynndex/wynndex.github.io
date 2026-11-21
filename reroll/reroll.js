@@ -10,7 +10,8 @@
  * liquid emeralds) is assumed to be the same on average every roll, so it
  * cancels out of the take-vs-reroll comparison.
  *
- * Per-pull rates were fitted to community data (lr-rates - Sheet1.csv):
+ * Per-pull rates were fitted to community data (lr-rates - Sheet1.csv, 3 weeks;
+ * least squares through the origin on 1/Frequency vs count):
  *   mythics: total rate = K_MYTHIC * (count + 1), split evenly between them
  *   augments / wards: K_AUGMENT / K_WARD per item
  *   shiny: 1 in 100,000
@@ -25,9 +26,9 @@
 
   // ---- Constants -----------------------------------------------------------
 
-  var K_MYTHIC = 1 / 28289;
-  var K_AUGMENT = 1 / 5625;
-  var K_WARD = 1 / 6280;
+  var K_MYTHIC = 1 / 29113;
+  var K_AUGMENT = 1 / 5735;
+  var K_WARD = 1 / 6215;
   var SHINY_RATE = 1 / 100000;
 
   // Lootrun tokens: each costs ~15 LE by default (editable) and adds TOKEN_PULLS pulls and one
@@ -311,6 +312,7 @@
   function renderPrice(row) {
     var autofilled = !!row.api && pickPrice(row.api, state.source) !== null;
     var price = el('span', { className: 'item-price' });
+    var staleAt = autofilled ? staleSince(row.api, state.source) : null;
 
     function show() {
       var v = parseEm(row.price);
@@ -326,6 +328,10 @@
 
     if (autofilled) {
       price.title = apiTitle(row.api);
+      if (staleAt) {
+        price.classList.add('stale');
+        price.title = 'Wynnventory has no current price; using the last-seen one from ' + ago(staleAt) + '.\n' + price.title;
+      }
       show();
       return price;
     }
@@ -714,7 +720,11 @@
   // scheduled GitHub Action (scripts/update_prices.py) so visitors get prices
   // without a key of their own. A personal key fetches live prices instead.
   var PRICES_URL = '/data/prices.json';
-  var sharedPrices = null; // { updated_at, items: { name: stats } }
+  // Wynnventory often leaves prices out, so the snapshot also keeps the last
+  // value seen for every price field (`last_seen`); fields backfilled from it
+  // are listed in the item's `stale` map with when they were recorded.
+  var sharedPrices = null; // { updated_at, items: { name: stats }, last_seen: { name: { field: { value, at } } } }
+  var PRICE_FIELDS = ['unidentified_lowest_price', 'lowest_price', 'unidentified_average_p50_ema_price', 'average_p50_ema_price'];
 
   function loadSharedPrices() {
     fetch(PRICES_URL, { cache: 'no-cache' }).then(function (res) {
@@ -729,13 +739,29 @@
     }).catch(function () { /* no snapshot yet: manual or personal-key prices only */ });
   }
 
-  // Fill rows from the snapshot, leaving live (personal-key) prices alone.
+  // Copy of `stats` with missing price fields filled from the snapshot's last-seen values.
+  function withLastSeen(name, stats) {
+    var seen = sharedPrices && sharedPrices.last_seen && sharedPrices.last_seen[name];
+    var out = {};
+    var stale = {};
+    Object.keys(stats || {}).forEach(function (k) { if (k !== 'stale') out[k] = stats[k]; });
+    Object.keys((stats && stats.stale) || {}).forEach(function (k) { stale[k] = stats.stale[k]; });
+    PRICE_FIELDS.forEach(function (k) {
+      if (typeof out[k] === 'number' || !seen || !seen[k]) return;
+      out[k] = seen[k].value;
+      stale[k] = seen[k].at;
+    });
+    if (Object.keys(stale).length) out.stale = stale;
+    return PRICE_FIELDS.some(function (k) { return typeof out[k] === 'number'; }) ? out : null;
+  }
+
+  // Set each row's market stats: live (personal-key) prices, else the snapshot,
+  // with any missing price fields backfilled from their last-seen values.
   function applyShared() {
-    if (!sharedPrices || !sharedPrices.items) return;
     state.rows.forEach(function (row) {
-      if (row.live) return;
-      var stats = sharedPrices.items[row.name];
-      if (stats) row.api = stats;
+      var stats = row.live || (sharedPrices && sharedPrices.items && sharedPrices.items[row.name]);
+      var filled = withLastSeen(row.name, stats);
+      if (filled) row.api = filled;
     });
   }
   var camps = [];
@@ -836,15 +862,27 @@
     });
   }
 
-  function pickPrice(stats, source) {
+  // The stats field a price comes from: unidentified first, then identified.
+  function pickField(stats, source) {
     if (!stats) return null;
     var order = source === 'smooth'
       ? ['unidentified_average_p50_ema_price', 'average_p50_ema_price']
       : ['unidentified_lowest_price', 'lowest_price'];
     for (var i = 0; i < order.length; i++) {
-      if (typeof stats[order[i]] === 'number') return stats[order[i]];
+      if (typeof stats[order[i]] === 'number') return order[i];
     }
     return null;
+  }
+
+  function pickPrice(stats, source) {
+    var field = pickField(stats, source);
+    return field ? stats[field] : null;
+  }
+
+  // When the picked price was last seen, if it's a backfilled (not current) value.
+  function staleSince(stats, source) {
+    var field = pickField(stats, source);
+    return field && stats.stale ? stats.stale[field] || null : null;
   }
 
   function apiTitle(stats) {
@@ -885,14 +923,14 @@
     var denied = false;
     Promise.all(targets.map(function (row) {
       return api('/market/items/' + encodeURIComponent(row.name) + '/price').then(function (stats) {
-        row.api = stats;
-        row.live = true;
+        row.live = stats || null; // gaps are filled from last-seen prices in applyShared
       }).catch(function (err) {
         failed++;
         if (err.status === 401 || err.status === 403) denied = true;
         // keep any snapshot price for this item
       });
     })).then(function () {
+      applyShared();
       applySource();
       renderPool();
       changed();
