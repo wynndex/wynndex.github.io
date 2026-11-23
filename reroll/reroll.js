@@ -312,7 +312,6 @@
   function renderPrice(row) {
     var autofilled = !!row.api && pickPrice(row.api, state.source) !== null;
     var price = el('span', { className: 'item-price' });
-    var staleAt = autofilled ? staleSince(row.api, state.source) : null;
 
     function show() {
       var v = parseEm(row.price);
@@ -328,10 +327,6 @@
 
     if (autofilled) {
       price.title = apiTitle(row.api);
-      if (staleAt) {
-        price.classList.add('stale');
-        price.title = 'Wynnventory has no current price; using the last-seen one from ' + ago(staleAt) + '.\n' + price.title;
-      }
       show();
       return price;
     }
@@ -877,12 +872,6 @@
   function pickPrice(stats, source) {
     var field = pickField(stats, source);
     return field ? stats[field] : null;
-  }
-
-  // When the picked price was last seen, if it's a backfilled (not current) value.
-  function staleSince(stats, source) {
-    var field = pickField(stats, source);
-    return field && stats.stale ? stats.stale[field] || null : null;
   }
 
   function apiTitle(stats) {

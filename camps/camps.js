@@ -15,10 +15,11 @@
 (function () {
   'use strict';
 
-  // Same as reroll/reroll.js.
-  var K_MYTHIC = 1 / 28289;
-  var K_AUGMENT = 1 / 5625;
-  var K_WARD = 1 / 6280;
+  // Copies of the rate constants in reroll/reroll.js: keep them in sync
+  // (update both files whenever the rates are refitted).
+  var K_MYTHIC = 1 / 29113;
+  var K_AUGMENT = 1 / 5735;
+  var K_WARD = 1 / 6215;
   var AUGMENT_NAMES = ['corkian simulator', 'corkian insulator'];
   var SHINY_RATE = 1 / 100000;
 
