@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-28T08:17:31Z",
+ "updated_at": "2026-11-28T10:15:09Z",
  "source": "https://wynnventory.com/api/v2",
  "items": {
   "Absolution": {
@@ -8,31 +8,31 @@
    "unidentified_average_p50_ema_price": 1275957.03,
    "average_p50_ema_price": 902030.45,
    "unidentified_count": 8,
-   "total_count": 59
+   "total_count": 60
   },
   "Archangel": {
    "unidentified_lowest_price": 911769,
    "lowest_price": 84377,
    "unidentified_average_p50_ema_price": 921798.62,
-   "average_p50_ema_price": 232193.86,
+   "average_p50_ema_price": 236883.98,
    "unidentified_count": 2,
-   "total_count": 25
+   "total_count": 26
   },
   "Architect": {
-   "unidentified_lowest_price": 1575900,
+   "unidentified_lowest_price": 1572863,
    "lowest_price": 636518,
    "unidentified_average_p50_ema_price": 1842749.12,
-   "average_p50_ema_price": 2484677.5,
-   "unidentified_count": 34,
-   "total_count": 74
+   "average_p50_ema_price": 2458434.75,
+   "unidentified_count": 35,
+   "total_count": 77
   },
   "Ascendancy": {
    "unidentified_lowest_price": 1328947,
    "lowest_price": 52,
    "unidentified_average_p50_ema_price": 1465410.98,
-   "average_p50_ema_price": 1358328.98,
-   "unidentified_count": 28,
-   "total_count": 130
+   "average_p50_ema_price": 1347897.61,
+   "unidentified_count": 36,
+   "total_count": 142
   },
   "Az": {
    "unidentified_lowest_price": 725647,
@@ -48,89 +48,89 @@
    "unidentified_average_p50_ema_price": 1825375.08,
    "average_p50_ema_price": 1628461.12,
    "unidentified_count": 27,
-   "total_count": 77
+   "total_count": 79
   },
   "Corkian Insulator": {
-   "lowest_price": 603299,
-   "average_p50_ema_price": 659322.47,
+   "lowest_price": 597400,
+   "average_p50_ema_price": 657171.97,
    "unidentified_count": 0,
-   "total_count": 107
+   "total_count": 115
   },
   "Corkian Simulator": {
-   "lowest_price": 784711,
+   "lowest_price": 770047,
    "average_p50_ema_price": 989769.59,
    "unidentified_count": 0,
-   "total_count": 215
+   "total_count": 220
   },
   "Dawnbreak": {
-   "unidentified_lowest_price": 118272,
+   "unidentified_lowest_price": 116121,
    "lowest_price": 21094,
-   "unidentified_average_p50_ema_price": 146184.3,
-   "average_p50_ema_price": 100330.67,
-   "unidentified_count": 5,
-   "total_count": 27
+   "unidentified_average_p50_ema_price": 149375.3,
+   "average_p50_ema_price": 107544.17,
+   "unidentified_count": 11,
+   "total_count": 71
   },
   "Discoverer": {
    "unidentified_lowest_price": 749568,
    "lowest_price": 64512,
-   "unidentified_average_p50_ema_price": 786299.78,
-   "average_p50_ema_price": 547533.18,
-   "unidentified_count": 10,
-   "total_count": 84
+   "unidentified_average_p50_ema_price": 781231.03,
+   "average_p50_ema_price": 549054.8,
+   "unidentified_count": 16,
+   "total_count": 94
   },
   "Divzer": {
    "unidentified_lowest_price": 970342,
    "lowest_price": 270008,
    "unidentified_average_p50_ema_price": 999456.7,
-   "average_p50_ema_price": 815769.03,
+   "average_p50_ema_price": 816401.78,
    "unidentified_count": 6,
-   "total_count": 86
+   "total_count": 92
   },
   "Fatal": {
    "unidentified_lowest_price": 480952,
    "lowest_price": 64512,
    "unidentified_average_p50_ema_price": 505374.45,
-   "average_p50_ema_price": 296402.27,
+   "average_p50_ema_price": 296622.77,
    "unidentified_count": 6,
-   "total_count": 70
+   "total_count": 71
   },
   "Fate": {
    "unidentified_lowest_price": 369868,
    "lowest_price": 42188,
    "unidentified_average_p50_ema_price": 444589.26,
-   "average_p50_ema_price": 279087.8,
-   "unidentified_count": 13,
-   "total_count": 32
+   "average_p50_ema_price": 286214.8,
+   "unidentified_count": 14,
+   "total_count": 42
   },
   "Gaia": {
    "unidentified_lowest_price": 215040,
    "lowest_price": 42188,
-   "unidentified_average_p50_ema_price": 510196.46,
-   "average_p50_ema_price": 209493.29,
-   "unidentified_count": 44,
-   "total_count": 192
+   "unidentified_average_p50_ema_price": 509047.83,
+   "average_p50_ema_price": 210261.29,
+   "unidentified_count": 45,
+   "total_count": 203
   },
   "Grandmother": {
-   "unidentified_lowest_price": 675020,
+   "unidentified_lowest_price": 645488,
    "lowest_price": 135004,
-   "unidentified_average_p50_ema_price": 706939.24,
+   "unidentified_average_p50_ema_price": 706831.61,
    "average_p50_ema_price": 692660.01,
-   "unidentified_count": 9,
-   "total_count": 103
+   "unidentified_count": 10,
+   "total_count": 104
   },
   "Green Ward": {
-   "lowest_price": 963379,
-   "average_p50_ema_price": 1368539.26,
+   "lowest_price": 926998,
+   "average_p50_ema_price": 1359876.01,
    "unidentified_count": 0,
-   "total_count": 67
+   "total_count": 78
   },
   "Guardian": {
    "unidentified_lowest_price": 1051597,
    "lowest_price": 675020,
    "unidentified_average_p50_ema_price": 1104511.54,
-   "average_p50_ema_price": 1313831.27,
+   "average_p50_ema_price": 1325791.65,
    "unidentified_count": 12,
-   "total_count": 60
+   "total_count": 63
   },
   "Halcyon": {
    "unidentified_lowest_price": 1400831,
@@ -138,15 +138,15 @@
    "unidentified_average_p50_ema_price": 1632628.6,
    "average_p50_ema_price": 1657515.86,
    "unidentified_count": 27,
-   "total_count": 95
+   "total_count": 99
   },
   "Hero": {
    "unidentified_lowest_price": 513015,
    "lowest_price": 163839,
-   "unidentified_average_p50_ema_price": 594160.9,
+   "unidentified_average_p50_ema_price": 614409.65,
    "average_p50_ema_price": 404845.98,
-   "unidentified_count": 5,
-   "total_count": 67
+   "unidentified_count": 8,
+   "total_count": 82
   },
   "Immolation": {
    "unidentified_lowest_price": 1350041,
@@ -159,54 +159,54 @@
   "Inferno": {
    "unidentified_lowest_price": 278108,
    "lowest_price": 86016,
-   "unidentified_average_p50_ema_price": 439545.68,
-   "average_p50_ema_price": 451976.88,
-   "unidentified_count": 8,
-   "total_count": 58
+   "unidentified_average_p50_ema_price": 436810.8,
+   "average_p50_ema_price": 444740.63,
+   "unidentified_count": 13,
+   "total_count": 65
   },
   "Monster": {
    "unidentified_lowest_price": 945000,
    "lowest_price": 502046,
    "unidentified_average_p50_ema_price": 1089460.92,
-   "average_p50_ema_price": 1391707.48,
+   "average_p50_ema_price": 1408091.23,
    "unidentified_count": 12,
-   "total_count": 73
+   "total_count": 85
   },
   "Moontower": {
    "unidentified_lowest_price": 122888,
-   "lowest_price": 82400,
+   "lowest_price": 36750,
    "unidentified_average_p50_ema_price": 371191.52,
    "average_p50_ema_price": 137056.51,
-   "unidentified_count": 38,
-   "total_count": 83
+   "unidentified_count": 39,
+   "total_count": 118
   },
   "Nullification": {
-   "unidentified_lowest_price": 434544,
+   "unidentified_lowest_price": 349965,
    "lowest_price": 168755,
-   "unidentified_average_p50_ema_price": 444490.07,
-   "average_p50_ema_price": 384648.03,
-   "unidentified_count": 2,
-   "total_count": 17
+   "unidentified_average_p50_ema_price": 437050.57,
+   "average_p50_ema_price": 387672.78,
+   "unidentified_count": 7,
+   "total_count": 30
   },
   "Oblivion": {
    "unidentified_lowest_price": 594017,
    "lowest_price": 52500,
-   "unidentified_average_p50_ema_price": 1028982.96,
+   "unidentified_average_p50_ema_price": 975939.96,
    "average_p50_ema_price": 505058.59,
-   "unidentified_count": 21,
-   "total_count": 90
+   "unidentified_count": 23,
+   "total_count": 92
   },
   "Orange Ward": {
    "lowest_price": 561111,
-   "average_p50_ema_price": 702449.38,
+   "average_p50_ema_price": 702406.26,
    "unidentified_count": 0,
-   "total_count": 102
+   "total_count": 104
   },
   "Pink Ward": {
-   "lowest_price": 1310720,
-   "average_p50_ema_price": 1332508.88,
+   "lowest_price": 1133000,
+   "average_p50_ema_price": 1325955.12,
    "unidentified_count": 0,
-   "total_count": 38
+   "total_count": 50
   },
   "Pure": {
    "unidentified_lowest_price": 1310719,
@@ -227,34 +227,34 @@
   "Restitution": {
    "unidentified_lowest_price": 267800,
    "lowest_price": 51609,
-   "unidentified_average_p50_ema_price": 402956.16,
+   "unidentified_average_p50_ema_price": 409284.16,
    "average_p50_ema_price": 296670.01,
-   "unidentified_count": 12,
-   "total_count": 54
+   "unidentified_count": 14,
+   "total_count": 61
   },
   "Revolution": {
-   "unidentified_lowest_price": 751900,
+   "unidentified_lowest_price": 645488,
    "lowest_price": 312197,
-   "unidentified_average_p50_ema_price": 1046918.56,
-   "average_p50_ema_price": 1037507.61,
-   "unidentified_count": 28,
-   "total_count": 65
+   "unidentified_average_p50_ema_price": 1042411.31,
+   "average_p50_ema_price": 1046367.48,
+   "unidentified_count": 33,
+   "total_count": 73
   },
   "Spring": {
    "unidentified_lowest_price": 772055,
    "lowest_price": 385351,
    "unidentified_average_p50_ema_price": 1105088.94,
-   "average_p50_ema_price": 990468.22,
+   "average_p50_ema_price": 1027168.34,
    "unidentified_count": 6,
-   "total_count": 34
+   "total_count": 36
   },
   "Stratiformis": {
-   "unidentified_lowest_price": 1620049,
+   "unidentified_lowest_price": 1442000,
    "lowest_price": 825753,
-   "unidentified_average_p50_ema_price": 1898391.88,
-   "average_p50_ema_price": 1480716.2,
-   "unidentified_count": 10,
-   "total_count": 66
+   "unidentified_average_p50_ema_price": 1862281.13,
+   "average_p50_ema_price": 1484242.33,
+   "unidentified_count": 13,
+   "total_count": 70
   },
   "Sunstar": {
    "unidentified_lowest_price": 825753,
@@ -262,23 +262,23 @@
    "unidentified_average_p50_ema_price": 802925.35,
    "average_p50_ema_price": 572072.04,
    "unidentified_count": 27,
-   "total_count": 124
+   "total_count": 133
   },
   "Thrundacrack": {
    "unidentified_lowest_price": 540016,
    "lowest_price": 68812,
-   "unidentified_average_p50_ema_price": 542064.06,
-   "average_p50_ema_price": 474248.91,
-   "unidentified_count": 5,
-   "total_count": 52
+   "unidentified_average_p50_ema_price": 539377.31,
+   "average_p50_ema_price": 501929.79,
+   "unidentified_count": 6,
+   "total_count": 70
   },
   "Warchief": {
-   "unidentified_lowest_price": 970342,
+   "unidentified_lowest_price": 949888,
    "lowest_price": 34406,
-   "unidentified_average_p50_ema_price": 849492.27,
-   "average_p50_ema_price": 573431.27,
-   "unidentified_count": 17,
-   "total_count": 127
+   "unidentified_average_p50_ema_price": 847014.15,
+   "average_p50_ema_price": 574742.02,
+   "unidentified_count": 20,
+   "total_count": 131
   },
   "Warp": {
    "unidentified_lowest_price": 2565079,
@@ -344,14 +344,14 @@
     "at": "2026-11-28T01:54:29Z"
    },
    "average_p50_ema_price": {
-    "value": 232193.86,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 236883.98,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Architect": {
    "unidentified_lowest_price": {
-    "value": 1575900,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 1572863,
+    "at": "2026-11-28T10:15:09Z"
    },
    "lowest_price": {
     "value": 636518,
@@ -362,8 +362,8 @@
     "at": "2026-11-28T08:17:31Z"
    },
    "average_p50_ema_price": {
-    "value": 2484677.5,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 2458434.75,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Ascendancy": {
@@ -380,8 +380,8 @@
     "at": "2026-11-28T01:54:29Z"
    },
    "average_p50_ema_price": {
-    "value": 1358328.98,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 1347897.61,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Az": {
@@ -458,18 +458,18 @@
   },
   "Corkian Insulator": {
    "lowest_price": {
-    "value": 603299,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 597400,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 659322.47,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 657171.97,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Corkian Simulator": {
    "lowest_price": {
-    "value": 784711,
-    "at": "2026-11-28T01:54:29Z"
+    "value": 770047,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
     "value": 989769.59,
@@ -478,20 +478,20 @@
   },
   "Dawnbreak": {
    "unidentified_lowest_price": {
-    "value": 118272,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 116121,
+    "at": "2026-11-28T10:15:09Z"
    },
    "lowest_price": {
     "value": 21094,
     "at": "2026-11-28T08:17:31Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 146184.3,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 149375.3,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 100330.67,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 107544.17,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Discoverer": {
@@ -504,12 +504,12 @@
     "at": "2026-11-28T08:17:31Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 786299.78,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 781231.03,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 547533.18,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 549054.8,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Divzer": {
@@ -526,8 +526,8 @@
     "at": "2026-11-28T08:17:31Z"
    },
    "average_p50_ema_price": {
-    "value": 815769.03,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 816401.78,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Epoch": {
@@ -580,8 +580,8 @@
     "at": "2026-11-28T08:17:31Z"
    },
    "average_p50_ema_price": {
-    "value": 296402.27,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 296622.77,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Fate": {
@@ -598,8 +598,8 @@
     "at": "2026-11-28T01:54:29Z"
    },
    "average_p50_ema_price": {
-    "value": 279087.8,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 286214.8,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Freedom": {
@@ -630,12 +630,12 @@
     "at": "2026-11-28T01:54:29Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 510196.46,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 509047.83,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 209493.29,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 210261.29,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Galleon": {
@@ -658,16 +658,16 @@
   },
   "Grandmother": {
    "unidentified_lowest_price": {
-    "value": 675020,
-    "at": "2026-11-28T01:54:29Z"
+    "value": 645488,
+    "at": "2026-11-28T10:15:09Z"
    },
    "lowest_price": {
     "value": 135004,
     "at": "2026-11-28T01:54:29Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 706939.24,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 706831.61,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
     "value": 692660.01,
@@ -676,12 +676,12 @@
   },
   "Green Ward": {
    "lowest_price": {
-    "value": 963379,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 926998,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 1368539.26,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 1359876.01,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Guardian": {
@@ -698,8 +698,8 @@
     "at": "2026-11-28T08:17:31Z"
    },
    "average_p50_ema_price": {
-    "value": 1313831.27,
-    "at": "2026-11-28T01:54:29Z"
+    "value": 1325791.65,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Halcyon": {
@@ -730,8 +730,8 @@
     "at": "2026-11-28T01:54:29Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 594160.9,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 614409.65,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
     "value": 404845.98,
@@ -766,12 +766,12 @@
     "at": "2026-11-27T08:12:42Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 439545.68,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 436810.8,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 451976.88,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 444740.63,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Lament": {
@@ -806,8 +806,8 @@
     "at": "2026-11-28T08:17:31Z"
    },
    "average_p50_ema_price": {
-    "value": 1391707.48,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 1408091.23,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Moontower": {
@@ -816,8 +816,8 @@
     "at": "2026-11-28T08:17:31Z"
    },
    "lowest_price": {
-    "value": 82400,
-    "at": "2026-11-28T01:54:29Z"
+    "value": 36750,
+    "at": "2026-11-28T10:15:09Z"
    },
    "unidentified_average_p50_ema_price": {
     "value": 371191.52,
@@ -830,20 +830,20 @@
   },
   "Nullification": {
    "unidentified_lowest_price": {
-    "value": 434544,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 349965,
+    "at": "2026-11-28T10:15:09Z"
    },
    "lowest_price": {
     "value": 168755,
     "at": "2026-11-28T08:17:31Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 444490.07,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 437050.57,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 384648.03,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 387672.78,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Oblivion": {
@@ -856,8 +856,8 @@
     "at": "2026-11-28T01:54:29Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 1028982.96,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 975939.96,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
     "value": 505058.59,
@@ -870,18 +870,18 @@
     "at": "2026-11-28T00:00:21Z"
    },
    "average_p50_ema_price": {
-    "value": 702449.38,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 702406.26,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Pink Ward": {
    "lowest_price": {
-    "value": 1310720,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 1133000,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 1332508.88,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 1325955.12,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Pure": {
@@ -930,8 +930,8 @@
     "at": "2026-11-28T08:17:31Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 402956.16,
-    "at": "2026-11-28T01:54:29Z"
+    "value": 409284.16,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
     "value": 296670.01,
@@ -958,20 +958,20 @@
   },
   "Revolution": {
    "unidentified_lowest_price": {
-    "value": 751900,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 645488,
+    "at": "2026-11-28T10:15:09Z"
    },
    "lowest_price": {
     "value": 312197,
     "at": "2026-11-28T08:17:31Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 1046918.56,
-    "at": "2026-11-28T01:54:29Z"
+    "value": 1042411.31,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 1037507.61,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 1046367.48,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Spring": {
@@ -988,8 +988,8 @@
     "at": "2026-11-28T01:54:29Z"
    },
    "average_p50_ema_price": {
-    "value": 990468.22,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 1027168.34,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Stardew": {
@@ -1012,20 +1012,20 @@
   },
   "Stratiformis": {
    "unidentified_lowest_price": {
-    "value": 1620049,
-    "at": "2026-11-28T01:54:29Z"
+    "value": 1442000,
+    "at": "2026-11-28T10:15:09Z"
    },
    "lowest_price": {
     "value": 825753,
     "at": "2026-11-28T08:17:31Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 1898391.88,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 1862281.13,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 1480716.2,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 1484242.33,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Sunstar": {
@@ -1052,12 +1052,12 @@
     "at": "2026-11-27T08:55:57Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 542064.06,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 539377.31,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 474248.91,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 501929.79,
+    "at": "2026-11-28T10:15:09Z"
    },
    "unidentified_lowest_price": {
     "value": 540016,
@@ -1102,20 +1102,20 @@
   },
   "Warchief": {
    "unidentified_lowest_price": {
-    "value": 970342,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 949888,
+    "at": "2026-11-28T10:15:09Z"
    },
    "lowest_price": {
     "value": 34406,
     "at": "2026-11-28T08:17:31Z"
    },
    "unidentified_average_p50_ema_price": {
-    "value": 849492.27,
-    "at": "2026-11-28T01:54:29Z"
+    "value": 847014.15,
+    "at": "2026-11-28T10:15:09Z"
    },
    "average_p50_ema_price": {
-    "value": 573431.27,
-    "at": "2026-11-28T08:17:31Z"
+    "value": 574742.02,
+    "at": "2026-11-28T10:15:09Z"
    }
   },
   "Warp": {
